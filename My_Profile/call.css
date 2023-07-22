@@ -2,7 +2,10 @@ h1 {
     font-family: 'Courier New', Courier, monospace;
 
 }
-
+body {
+    background-image: url('7933.jpg');
+    background-attachment:fixed;
+  }
 img {
     width: 40px;
     padding-right: 29px;
