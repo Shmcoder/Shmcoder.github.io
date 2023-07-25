@@ -1,5 +1,0 @@
-{
-  "python.testing.pytestArgs": ["My_Profile"],
-  "python.testing.unittestEnabled": false,
-  "python.testing.pytestEnabled": true
-}
