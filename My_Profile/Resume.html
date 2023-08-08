@@ -32,6 +32,7 @@
             font-family: 'Courier New', Courier, monospace
         }
 
+
         li a:hover:not(.active) {
             background-color: #6fb2d1;
             transition: 0.6s;
@@ -47,6 +48,7 @@
             border-radius: 50%;
             padding: 30px;
             float: left;
+            margin-top: 60px;
         }
 
         body {
@@ -70,6 +72,32 @@
             color: #ff0000;
             padding-top: 0px;
         }
+
+        .button {
+            background-color: rgb(200, 0, 0);
+            border: none;
+            border-radius: 4px;
+            color: white;
+            padding-top: 15px;
+            padding-bottom: 15px;
+            padding-left: 15px;
+            padding-right: 15px;
+            cursor: pointer;
+            transition: opacity 0.5s;
+            text-align: center;
+            margin-right: 20px;
+            font-family: 'Courier New', Courier, monospace;
+
+        }
+
+        .button:hover:hover {
+            opacity: 0.6;
+        }
+
+        .button:active {
+            background-color: rgb(171, 49, 49);
+            opacity: 0.5;
+        }
     </style>
 </head>
 
@@ -77,11 +105,8 @@
     <div>
         <ul>
             <li style="float:LEFT"><a class="active">SHYAM_M</a></li>
-            <li style="float:right"><a href="contact.html">CONTACT</a></li>
-            <li style="float:right"><a href="Resume.html">RESUME</a></li>
-            <li style="float:right"><a href="achivement.html">ACHIVEMENTS</a>
-            </li>
-            <li style="float:right"><a href="index.html">PROFILE</a></li>
+            <li style="float:right"><button class="button" onclick="window.location.href = 'index.html';"> Back To
+                    Home</button></li>
         </ul>
     </div>
     <center>

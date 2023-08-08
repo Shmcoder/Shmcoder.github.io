@@ -9,6 +9,7 @@ ul {
 
   li {
     float: left;
+
   }
 
   li a {
@@ -20,10 +21,12 @@ ul {
     border-radius: 5px;
     font-family: 'Courier New', Courier, monospace
   }
+  
 
   li a:hover:not(.active) {
-    background-color: #6fb2d1;
-    transition: 0.6s;
+    background-color: #8ecae2;
+    color: #000000;
+    transition: 0.9s;
   }
 
   .active {
@@ -50,7 +53,7 @@ ul {
 
   .divname {
     font-family: 'Courier New', Courier, monospace;
-    padding-top: 0px;
+    margin-top: 50px;
     padding-left: 45px;
   }
 
@@ -90,8 +93,12 @@ ul {
   }
 
   body {
-    background-image: url('7933.jpg');
+    background-image: url('7935.jpg');
     background-attachment: fixed;
+    background-size: auto;
+    background-repeat: no-repeat;
+    background-size: 1500px 800px;
+    
   }
 
   mark {
@@ -102,3 +109,10 @@ ul {
   .lan {
     background: none;
   }
+  #navbar {
+    position: fixed;
+    top: 0;
+    width: 99%;
+    margin-top: 5px;
+  }
+  
