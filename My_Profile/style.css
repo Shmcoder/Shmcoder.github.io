@@ -49,6 +49,7 @@ ul {
 
   .img1:hover {
     transform: scale(1.2);
+    cursor:pointer;
   }
 
   .divname {
