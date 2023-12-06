@@ -6,7 +6,7 @@ public class pattern {
         System.out.println("\n\n");
         pat_2(5);
         System.out.println("\n\n");
-        pat_3a(5);  
+        pat_3a(5);
         System.out.println("\n\n");
         pat_3b(5);
         System.out.println("\n\n");
@@ -20,7 +20,7 @@ public class pattern {
     }
 
     /*
-
+     * 
      * 
      * *
      * * *
@@ -35,7 +35,7 @@ public class pattern {
             System.out.println(" ");
         }
     }
-  
+
     /*
      * 
      * * * * *
