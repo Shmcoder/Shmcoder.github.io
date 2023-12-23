@@ -1,0 +1,176 @@
+html {
+  box-sizing: border-bo;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  background-color: #ffffffee;
+  color:  #000000;
+  font-family:monospace;
+  font-size: 20px;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+  -webkit-box-sizing: inherit;
+  -moz-box-sizing: inherit;
+}
+
+body {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  min-height: 95vh;
+  text-align: center;
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(3,auto);
+  margin: 30px auto 40px auto;
+  
+}
+
+.square {
+  width: 100px ;
+  height: 100px;
+  border: 2px solid  #000000;
+  transition: 0.2s ease-out;
+  cursor: pointer;
+}
+
+.square:hover {
+  background-color:  #b7d7e3;
+}
+
+.gameOver .square:hover,
+.square.X:hover,
+.square.O:hover {
+  background-color: inherit;
+  cursor: default;
+}
+
+.square .outline {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+  width: 100px;
+}
+
+.square .foreground {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+  width: 100px;
+}
+
+
+.square.X .outline:before {
+  content: "";
+  background:  #000000;
+  width: 14px;
+  height: 58px;
+  position: absolute;
+  transform: rotate(45deg);
+  z-index: 2;
+}
+
+.square.X .outline:after {
+  content: "";
+  background:  #000000;
+  width: 14px;
+  height: 58px;
+  position: absolute;
+  transform: rotate(-45deg);
+  z-index: 2;
+}
+
+.square.X .foreground:before {
+  content: "";
+  background:  #FF6652;
+  width: 8px;
+  height: 52px;
+  position: absolute;
+  transform: rotate(45deg);
+  z-index: 3;
+}
+
+.square.X .foreground:after {
+  content: "";
+  background:  #FF6652;
+  width: 8px;
+  height: 52px;
+  position: absolute;
+  transform: rotate(-45deg);
+  z-index: 3;
+}
+
+
+.square.O .outline:before {
+  content: "";
+  background: transparent;
+  width: 58px;
+  height: 58px;
+  position: absolute;
+  border-radius: 50%;
+  border: 14px solid #000000;
+  z-index: 2;
+}
+
+.square.O .foreground:after {
+  content: "";
+  background: transparent;
+  width: 52px;
+  height: 52px;
+  position: absolute;
+  border-radius: 50%;
+  border: 8px solid #FF6652;
+  z-index: 3;
+}
+
+
+.square:nth-of-type(1),
+.square:nth-of-type(2),
+.square:nth-of-type(3) {
+  border-top: none;
+}
+
+.square:nth-of-type(1),
+.square:nth-of-type(4),
+.square:nth-of-type(7) {
+  border-left: none;
+}
+
+.square:nth-of-type(3),
+.square:nth-of-type(6),
+.square:nth-of-type(9) {
+  border-right: none;
+}
+
+.square:nth-of-type(7),
+.square:nth-of-type(8),
+.square:nth-of-type(9) {
+  border-bottom: none;
+}
+
+
+button{
+  background-color:  #ca3131;
+  font-family:monospace;
+  font-size: 19px;
+  color: white;
+  border: none;
+  padding: 15px 30px;
+  border-radius: 4px;
+  transition: 0.2s ease-out;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #92909b;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12), 0 5px 6px rgba(0, 0, 0, 0.26);
+}
