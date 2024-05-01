@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissor</title>
+    <link rel="shortcut icon" type="img/png" href="img/turn.png">
+    <link rel="Stylesheet" href="styles.css">
+</head>
+
+<body id="body">
+    <div class="block">
+        <div class="search">
+            <input class="citytext" type="text" placeholder="enter the city">
+            <button><img class="lens" src="image/search.png" alt="search"></button>
+        </div>
+        <div class="weather">
+            <div class="img">
+                <img src="image/clear.png" class="weather-icon" alt="weather">
+            </div>
+            <div class="tt">
+                <h1 class="txt">0</h1><span>°C</span>
+            </div>
+            <div class="city">
+                <h2 class="cityname">- - -</h2>
+            </div>
+
+        </div>
+
+    </div>
+    <script>
+
+        const apiKey = "9c1dd34bea924a47e450ecf154e89074";
+        const apiUrl = "https://api.openweathermap.org/data/2.5/weather?units=metric&q=";
+        const search = document.querySelector(".citytext");
+        const searchbtn = document.querySelector(".lens");
+        const weatherIcon = document.querySelector("weather-icon");
+        async function checkWeather(city) {
+            const response = await fetch(apiUrl + city + `&appid=${apiKey}`);
+            var data = await response.json();
+            console.log(data);
+            document.querySelector(".cityname").innerHTML = (data.name).toUpperCase();
+            document.querySelector(".txt").innerHTML = Math.round(data.main.temp);
+            if (data.weather[0].main == "Clouds") {
+                weatherIcon.src = "image/clouds.png";
+            }
+        }
+        searchbtn.addEventListener("click", () => {
+            checkWeather(search.value);
+        });
+
+    </script>
+</body>
+
+
+</html>
