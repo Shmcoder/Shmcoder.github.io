@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BULB</title>
+    <style>
+        img {
+            padding-bottom: 2px;
+        }
+
+        button {
+            margin-top: 30px;
+            margin-left: 20px;
+            justify-content: space-between;
+            cursor: pointer;
+            border-color: aliceblue;
+            border-radius: 8px;
+            color: aliceblue;
+            text-align: center;
+            border-style: none;
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: 500;
+            font-size: medium;
+        }
+
+        .on {
+            padding-left: 26px;
+            padding-right: 26px;
+            background-color: rgb(62, 170, 52);
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+
+        .off {
+            padding-left: 20px;
+            padding-right: 20px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            background-color: crimson;
+        }
+    </style>
+</head>
+
+<body>
+    <center>
+        <script src="page2.js">
+        </script>
+        <img width="900" src="lightbulb-g3469abdc8_1920.jpg" id="img" alt="bulb"><br>
+        <button class="on" onclick=on()>ON</button>
+        <button class="off" onclick=off()>OFF</button>
+    </center>
+
+</body>
+
+</html>
