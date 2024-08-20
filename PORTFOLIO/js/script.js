@@ -12,7 +12,7 @@ htmlProgress.style.background = `conic-gradient(#fca61f ${htmlEndValue * 3.6}deg
 let javascriptProgress = document.querySelector(".javascript"),
   javascriptValue = document.querySelector(".javascript-progress");
 
-let javascriptEndValue = 75;
+let javascriptEndValue = 30;
 
 javascriptValue.textContent = `${javascriptEndValue}%`;
 javascriptProgress.style.background = `conic-gradient(#7d2ae8 ${javascriptEndValue * 3.6}deg, #ededed 0deg)`;
@@ -21,7 +21,7 @@ javascriptProgress.style.background = `conic-gradient(#7d2ae8 ${javascriptEndVal
 let phpProgress = document.querySelector(".php"),
   phpValue = document.querySelector(".php-progress");
 
-let phpEndValue = 80;
+let phpEndValue = 75;
 
 phpValue.textContent = `${phpEndValue}%`;
 phpProgress.style.background = `conic-gradient(#20c997 ${phpEndValue * 3.6}deg, #ededed 0deg)`;
@@ -30,7 +30,7 @@ phpProgress.style.background = `conic-gradient(#20c997 ${phpEndValue * 3.6}deg, 
 let reactProgress = document.querySelector(".reactjs"),
   reactValue = document.querySelector(".reactjs-progress");
 
-let reactEndValue = 30;
+let reactEndValue = 80;
 
 reactValue.textContent = `${reactEndValue}%`;
 reactProgress.style.background = `conic-gradient(#3f396d ${reactEndValue * 3.6}deg, #ededed 0deg)`;
