@@ -50,6 +50,12 @@ body{
     color: #fff;
     font-size: 1.2rem;
 }
+.size-img{
+    padding-top: 22px;
+    width:420px;
+    height:auto;
+
+}
 /* styling home section starts */
 .home{
     background: linear-gradient(33deg, rgb(189, 188, 234) 0%, rgba(235,249,255,1) 100%);
