@@ -31,7 +31,7 @@
             max-width: 100%;
             margin: 0px 15px;
             border-radius: 8px;
-            padding: 20px;
+            padding: 20px 0px 20px 20px;
             background: #fff;
             box-shadow: 0 0 1.5px rgba(0, 0, 0, 0.6);
         }
@@ -183,18 +183,10 @@
 
 
 
-        select {
-            color: #888888;
-
-        }
-
-
-
-
         /* Cancel Button */
         .cancel-btn,
         .back-btn,
-        .next-btn {
+        .sub-btn {
             margin-top: 20px;
         }
 
@@ -215,22 +207,7 @@
             color: #ffffff;
         }
 
-        .Browser-btn {
-            padding: 5px 20px;
-            font-size: 16px;
-            color: #007bff;
-            background-color: #e6f2ff;
-            border: 2px solid #007bff;
-            border-radius: 6px;
-            margin-top: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
 
-        .Browser-btn:hover {
-            background-color: #007bff;
-            color: #ffffff;
-        }
 
         .back-btn {
             padding: 5px 40px;
@@ -250,19 +227,19 @@
             color: #ffffff;
         } */
 
-        .next-btn {
-            padding: 10px 40px;
+        .sub-btn {
+            padding: 10px 35px;
             font-size: 16px;
-            color: #007bff;
-            background-color: #e6f2ff;
-            border: 2px solid #007bff;
+            color: #05b016;
+            background-color: #e9ffeb;
+            border: 2px solid #05b016;
             border-radius: 8px;
             margin-right: 20px;
             cursor: pointer;
             transition: background-color 0.3s ease, color 0.3s ease;
         }
 
-        .next-btn:hover {
+        .sub-btn:hover {
             background-color: #007bff;
             color: #ffffff;
         }
@@ -284,9 +261,12 @@
 
         }
 
-        .profile-pic {
-            padding-right: 20px;
+        .form-title {
+            font-size: 20px;
+            margin-bottom: 20px;
+            font-weight: bold;
         }
+
 
         select {
             width: 100%;
@@ -310,13 +290,111 @@
 
         select {
             cursor: pointer;
+            color: #888888;
         }
 
-        .pic {
+        .form-row {
             display: flex;
-            flex-direction: column;
-            align-items: start;
-            justify-content: center;
+            /* justify-content: space-between; */
+            /* padding-left: 20px; */
+            /* align-items: center; */
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            flex: 1;
+            margin-right: 10px;
+        }
+
+        .form-group label {
+            font-weight: bold;
+            color: #3c3c3c;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .tags {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .tag {
+            background-color: #bff8ff;
+            padding: 6px 10px;
+            border-radius: 20px;
+            font-size: 14px;
+            display: inline-flex;
+            align-items: center;
+            color: #374241;
+        }
+
+        .tag span {
+            margin-right: 5px;
+        }
+
+        .tag button {
+            background-color: transparent;
+            border: none;
+            color: #ff5252;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .fare-buttons {
+            display: flex;
+            gap: 10px;
+            /* margin-top: 30px; */
+        }
+
+        .fare-buttons button {
+            padding: 12px 15px;
+            max-height: 41px;
+            max-width: 170px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        .check-fare {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .edit-fare {
+            background-color: #ffa200;
+            color: white;
+        }
+
+        .check-fare:hover {
+            background-color: #0056b3;
+        }
+
+        .edit-fare:hover {
+            background-color: #e69100;
+        }
+
+        .Add {
+            display: flex;
+            align-items: center;
+        }
+
+        .Add img {
+
+            /* padding: 5px; */
+            height: 18px;
+            padding-right: 10px;
         }
     </style>
 
@@ -378,16 +456,81 @@
     </div>
 
     <div class="container-1">
-        <center>
-            <h4>UNDER DEVELOPMENT</h4>
-        </center>
+        <div class="form-title">Client Details</div>
+        <form>
+            <!-- First row of inputs: Client Name, Site Name, Location, Trip Type -->
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="client-name">Client Name</label>
+                    <select id="client-name">
+                        <option value="1">New Pandian Travels</option>
+                        <option value="2">ABC Travels</option>
+                        <option value="3">XYZ Transport</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="site-name">Site Name</label>
+                    <input type="text" id="site-name" placeholder="Enter Site">
+                    <!-- Tags for selected locations -->
+                    <div class="tags">
+                        <div class="tag">
+                            <span>Taramani</span>
+                            <button type="button">&times;</button>
+                        </div>
+                        <div class="tag">
+                            <span>Tambaram</span>
+                            <button type="button">&times;</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="location">Location</label>
+                    <select id="location">
+                        <option value="">Select Location</option>
+                        <option value="Taramani">Taramani</option>
+                        <option value="Tambaram">Tambaram</option>
+                        <option value="Velachery">Velachery</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="trip-type">Trip Type</label>
+                    <select id="trip-type">
+                        <option value="kilometer">Kilometer</option>
+                        <option value="hourly">Hourly</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="fair-Details">Fare Details</label>
+                    <div class="fare-buttons">
+                        <button type="button" class="check-fare"><img src="IMAGES/path-44933@2x.png"
+                                style="height: 12px;width: auto;padding-right: 3px;" alt="">Check Fare</button>
+                        <button type="button" class="edit-fare"><img src="IMAGES/path-44930@2x.png"
+                                style="height: 11px;width: auto; padding-right: 2px;" alt=""> Edit Fare</button>
+                    </div>
+                </div>
+
+
+            </div>
+
+
+            <div class="Add">
+                <img src="IMAGES/path-38511@2x.png" alt="">
+                <a href="#" class="add-secondary-bank">Add Secondary Bank
+                    Details</a>
+            </div>
+            <!-- Fare buttons -->
+
+        </form>
     </div>
 
     </div>
     <div class="form-buttons">
         <button type="button" class="cancel-btn">Cancel</button>
         <button type="button" class="back-btn">Back</button>
-        <a href="client.html"><button onclick="" type="submit" class="next-btn">Next</button></a>
+        <button type="submit" class="sub-btn">Submit</button>
     </div>
 </body>
 
