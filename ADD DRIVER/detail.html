@@ -236,7 +236,24 @@
 
         /* Responsive code End */
         /* Media query for tablets and smaller screens (up to 768px) */
-        @media (max-width: 768px) {
+        @media (max-width: 420px) {
+            .container-2 {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                padding: 20px;
+                border-color: #ffffff;
+                box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.2);
+            }
+
+            .right {
+                display: none;
+            }
+
+            .step-label {
+                display: none;
+            }
+
             .form-row {
                 flex-direction: column;
                 align-items: stretch;
@@ -264,23 +281,9 @@
                 align-items: flex-start;
             }
 
-            .container-2 {
-                flex-direction: column;
-                padding: 10px;
-                align-items: flex-start;
-            }
 
-            .left,
-            .right {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 10px;
-            }
 
-            .status {
-                padding-left: 0;
-                justify-content: center;
-            }
+
 
             .profile-pic {
                 margin-bottom: 15px;
@@ -288,41 +291,13 @@
                 align-self: center;
             }
 
-            /* Step Indicator adjustments */
-            .progress {
-                flex-direction: column;
-                /* Stack step indicators vertically */
-                gap: 10px;
-                align-items: center;
-            }
 
-            .Path-45302 {
-                width: 50px;
-                /* Shorten the line between steps */
-                margin: 0;
-            }
-
-            .step {
-                flex-direction: row;
-                justify-content: center;
-                margin-bottom: 10px;
-                /* Add spacing between steps */
-            }
-
-            .step-number {
-                width: 28px;
-                /* Adjust size of step number */
-                height: 28px;
-            }
-
-            .step-label {
-                font-size: 12px;
-            }
 
             /* Button adjustments for mobile */
             .cancel-btn,
             .next-btn {
-                width: 100%;
+                /* width: 100%; */
+
                 text-align: center;
                 padding: 12px;
                 margin-bottom: 10px;
@@ -474,8 +449,8 @@
     <div class="status">
         <img class="back" src="IMAGES/group-28608@2x.png" alt="">
         <div class="progress">
-            <div  class="step active">
-                <div style="border-color: #e6f2ff;color: #e6f2ff;"class="step-number">1</div>
+            <div class="step active">
+                <div style="border-color: #e6f2ff;color: #e6f2ff;" class="step-number">1</div>
                 <div class="step-label">Personal Details</div>
             </div>
             <div class="Path-45302"></div>
@@ -530,7 +505,7 @@
                 </div>
                 <div class="form-group">
                     <label for="driverID">Driver ID</label>
-                    <input type="text" id="driverID" placeholder="Enter Id" disabled>
+                    <input type="text" id="driverID" placeholder="Enter Id">
                 </div>
             </div>
             <div class="Profile">
