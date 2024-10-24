@@ -1,0 +1,226 @@
+* {
+    font-family: 'Averta-Semibold';
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.container-1 {
+    max-width: 100%;
+    margin: 0px 15px;
+    border-radius: 8px;
+    padding: 20px 20px;
+    background: #fff;
+    box-shadow: 0 0 1.5px rgba(0, 0, 0, 0.6);
+}
+
+
+/* .container-1 {
+    flex-direction: column;
+    padding: 10px;
+    align-items: flex-start;
+} */
+
+.container-2 {
+    max-width: 100%;
+    margin: 0px;
+    padding: 4px 10px 4px 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background: #fff;
+    box-shadow: 0 0 1.5px rgba(0, 0, 0, 0.4);
+}
+
+.form-row {
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 20px;
+    width: 275px;
+}
+
+.profile-row {
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 20px;
+    /* width: 275px; */
+}
+
+
+
+select {
+    width: 100%;
+    padding: 11px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    background-color: white;
+    appearance: none;
+    /* Removes the default dropdown arrow on some browsers */
+    -webkit-appearance: none;
+    /* Chrome/Safari */
+    -moz-appearance: none;
+    /* Firefox */
+    position: relative;
+    background-position: right 10px center;
+    background-repeat: no-repeat;
+    background-size: 10px 7px;
+}
+
+select {
+    cursor: pointer;
+    color: #888888;
+}
+
+
+
+.profile-pic {
+    margin-right: 15px;
+    border-radius: 50%;
+    /* Makes the image round */
+    object-fit: cover;
+    /* Ensures the image fits the container */
+    width: 95px;
+    /* Set the desired width */
+    height: 95px;
+    /* Set the desired height */
+    border: 2px solid #ffffff;
+    /* Add space below profile picture */
+    align-self: center;
+}
+
+.pic {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+}
+
+
+.pic .Browser-btn {
+    max-width: 50%;
+
+}
+
+
+/* BUTTON */
+
+input #file-upload-button {
+    margin-right: 200px;
+}
+
+input #file-upload-button:hover {
+    background-color: #007bff;
+    color: #ffffff;
+}
+
+
+.back-btn {
+    padding: 10px 40px;
+    font-size: 16px;
+    color: #8a8a8a;
+    margin-right: 20px;
+    background-color: #f5f5f5;
+    border: 2px solid #8a8a8a;
+    border-radius: 6px;
+    /* margin-top: 5px; */
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.back-btn:hover {
+    background-color: #8f8f8f;
+    color: #ffffff;
+}
+
+.next-btn {
+    padding: 10px 40px;
+    font-size: 16px;
+    color: #007bff;
+    background-color: #e6f2ff;
+    border: 2px solid #007bff;
+    border-radius: 8px;
+    margin-right: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.next-btn:hover {
+    background-color: #007bff;
+    color: #ffffff;
+}
+
+.cancel-btn {
+    padding: 10px 30px;
+    font-size: 16px;
+    color: #ff4d4d;
+    background-color: #fff5f5;
+    border: 2px solid #ff4d4d;
+    border-radius: 8px;
+    margin-right: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.cancel-btn:hover {
+    background-color: #ff4d4d;
+    color: #ffffff;
+}
+
+.sub-btn {
+    padding: 10px 35px;
+    font-size: 16px;
+    color: #05b016;
+    background-color: #e9ffeb;
+    border: 2px solid #05b016;
+    border-radius: 8px;
+    margin-right: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.sub-btn:hover {
+    background-color: #05b016;
+    color: #ffffff;
+}
+
+.cancel-btn,
+.back-btn,
+.next-btn,
+.sub-btn {
+    margin-top: 20px;
+}
+
+.span {
+    color: #8a8a8a;
+    padding: 3px;
+}
+
+.form-buttons {
+    display: flex;
+    justify-content: end;
+
+}
+
+.add-secondary-bank {
+    color: #21abbc;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.add-secondary-bank:hover {
+    text-decoration: underline;
+}
+
+.Add {
+    display: flex;
+    align-items: center;
+}
+
+.Add img {
+
+    /* padding: 5px; */
+    height: 18px;
+    padding-right: 10px;
+}

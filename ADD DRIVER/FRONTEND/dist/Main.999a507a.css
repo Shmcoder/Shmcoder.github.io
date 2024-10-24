@@ -1,0 +1,97 @@
+.section-title {
+  padding: 0 0 10px;
+}
+
+.form-title {
+  margin-bottom: 20px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.client-form-row {
+  margin-bottom: 20px;
+  display: flex;
+}
+
+.client-form-group {
+  flex: 1;
+  margin-right: 10px;
+}
+
+.client-form-group label {
+  color: #3c3c3c;
+  margin-bottom: 5px;
+  font-weight: bold;
+  display: block;
+}
+
+.client-form-group input, .client-form-group select {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+}
+
+.tags {
+  gap: 10px;
+  margin-top: 10px;
+  display: flex;
+}
+
+.tag {
+  color: #374241;
+  background-color: #bff8ff;
+  border-radius: 20px;
+  align-items: center;
+  padding: 6px 10px;
+  font-size: 14px;
+  display: inline-flex;
+}
+
+.tag span {
+  margin-right: 5px;
+}
+
+.tag button {
+  color: #ff5252;
+  cursor: pointer;
+  background-color: #0000;
+  border: none;
+  font-weight: bold;
+}
+
+.fare-buttons {
+  gap: 10px;
+  display: flex;
+}
+
+.fare-buttons button {
+  cursor: pointer;
+  border: none;
+  border-radius: 6px;
+  max-width: 170px;
+  max-height: 41px;
+  padding: 12px 15px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.check-fare {
+  color: #fff;
+  background-color: #007bff;
+}
+
+.edit-fare {
+  color: #fff;
+  background-color: #ffa200;
+}
+
+.check-fare:hover {
+  background-color: #0056b3;
+}
+
+.edit-fare:hover {
+  background-color: #e69100;
+}
+/*# sourceMappingURL=Main.999a507a.css.map */

@@ -1,0 +1,29 @@
+.detail-form-row {
+  justify-content: flex-start;
+  margin-bottom: 20px;
+  display: flex;
+}
+
+.detail-form-group {
+  margin-right: 20px;
+}
+
+.detail-form-group label {
+  margin-bottom: 5px;
+  font-weight: bold;
+  display: block;
+}
+
+.detail-form-group input, .detail-form-group select {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 275px;
+  padding: 11px;
+}
+
+.detail-form-buttons {
+  justify-content: end;
+  align-items: center;
+  display: flex;
+}
+/*# sourceMappingURL=Main.7ff44ecb.css.map */
