@@ -1,10 +1,10 @@
 import { RenderHeader } from "../HEADER/Header.js";
 import { Status } from "../STATUS/Status.js";
 import {
+  BankDetails,
   PersonalDetail,
   VehicleDetails,
   Document,
-  BankDetails,
   ClientDetails,
 } from "../DETAILS/details.js";
 

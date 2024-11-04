@@ -819,7 +819,6 @@ parcelHelpers.export(exports, "Document", ()=>Document);
 parcelHelpers.export(exports, "VehicleDetails", ()=>VehicleDetails);
 parcelHelpers.export(exports, "BankDetails", ()=>BankDetails);
 parcelHelpers.export(exports, "ClientDetails", ()=>ClientDetails);
-var _apiCallsJs = require("../API_CALLS.js");
 var _group287202XPng = require("../../ASSETS/IMAGES/group-28720@2x.png");
 var _group287202XPngDefault = parcelHelpers.interopDefault(_group287202XPng);
 var _group287212XPng = require("../../ASSETS/IMAGES/group-28721@2x.png");
@@ -832,6 +831,7 @@ var _path449332XPng = require("../../ASSETS/IMAGES/path-44933@2x.png");
 var _path449332XPngDefault = parcelHelpers.interopDefault(_path449332XPng);
 var _path449302XPng = require("../../ASSETS/IMAGES/path-44930@2x.png");
 var _path449302XPngDefault = parcelHelpers.interopDefault(_path449302XPng);
+const { addPersonalDetails, addVehicleDetails, addClientDetails, addBankDetails } = require("7afe2b3386d5c050");
 // PersonalDetails.js
 class PersonalDetail {
     constructor(){
@@ -844,140 +844,168 @@ class PersonalDetail {
           <div class="section-title">
             <h2>Personal Details</h2>
           </div>
-          <div class="detail-form-row">
-            <div class="detail-form-group">
-              <label for="driverType">Driver Type</label>
-              <select id="driverType">
-                <option value="" disabled selected hidden>Select Owner / Driver / Both</option>
-                <option value="owner">Owner</option>
-                <option value="driver">Driver</option>
-                <option value="both">Both</option>
-              </select>
-            </div>
-            <div class="detail-form-group">
-              <label for="serviceType">Service Type</label>
-              <select id="serviceType">
-                <option value="" disabled selected hidden>Select Fleet / Attachment</option>
-                <option value="fleet">Fleet</option>
-                <option value="attachment">Attachment</option>
-              </select>
-            </div>
-            <div class="detail-form-group">
-              <label for="driverID">Driver ID</label>
-              <input type="text" id="driverID" placeholder="Enter ID">
-            </div>
-          </div>
-          <div class="Profile">
-            <div class="profile-row">
-              <img id="profilePicturePreview" class="profile-pic" src=${0, _group287202XPngDefault.default} alt="Profile Picture" style="height: 95px;">
-              <div class="pic">
-                <label for="profilePicture">Profile Picture</label>
-                <p style="color: #969292; max-width: 100%;">Maximum size: 2 MB | Minimum Resolution: 1000px, Format: JPG, PNG</p>
-                <input type="file" id="profilePicture" accept="image/jpeg, image/png">
-              </div>
-            </div>
-          </div>
-          <div class="detail-form-row">
-            <div class="detail-form-group">
-              <label for="fullName">Full Name</label>
-              <input type="text" id="fullName" placeholder="Enter Name">
-            </div>
-            <div class="detail-form-group">
-              <label for="phoneNumber">Phone Number</label>
-              <input type="text" id="phoneNumber" placeholder="Enter Number">
-            </div>
-            <div class="detail-form-group">
-              <label for="gender">Gender</label>
-              <select id="gender">
-                <option value="" disabled selected hidden>Choose Gender</option>
-                <option>Male</option>
-                <option>Female</option>
-              </select>
-            </div>
-            <div class="detail-form-group">
-              <label for="dob">Date of Birth</label>
-              <input type="date" id="dob" placeholder="DD/MM/YYYY">
-            </div>
-          </div>
-          <div class="section-title">
-            <h3>Address Details</h3>
-          </div>
-          <div class="detail-form-row">
-            <div class="detail-form-group">
-              <label for="addressLine1">Address Line 1</label>
-              <input type="text" id="addressLine1" placeholder="Enter Address">
-            </div>
-            <div class="detail-form-group">
-              <label for="addressLine2">Address Line 2</label>
-              <input type="text" id="addressLine2" placeholder="Enter Address">
-            </div>
-            <div class="detail-form-group">
-              <label for="city">City</label>
-              <input type="text" id="city" placeholder="Enter City">
-            </div>
-            <div class="detail-form-group">
-              <label for="state">State</label>
-              <select id="state">
-                <option value="" disabled selected hidden>Select State</option>
-                <option value="TamilNadu">Tamil Nadu</option>
-                <option value="Kerala">Kerala</option>
-                <option value="Karnataka">Karnataka</option>
-              </select>
-            </div>
-          </div>
-          <div class="detail-form-row">
-            <div class="detail-form-group">
-              <label for="country">Country</label>
-              <select id="country">
-                <option value="" disabled selected hidden>Select Country</option>
-                <option value="India">India</option>
-                <option value="Sri Lanka">Sri Lanka</option>
-                <option value="Japan">Japan</option>
-              </select>
-            </div>
-            <div class="detail-form-group">
-              <label for="pinCode">Pin Code</label>
-              <input type="text" id="pinCode" placeholder="Enter Pin Code">
-            </div>
-          </div>
+          ${this.renderPersonalDetails()}
+          ${this.renderAddressDetails()}
+          ${this.renderButtons()}
         </form>
       </div>
-      ${this.btn_render()}
       <br><br>
     `;
     }
+    renderPersonalDetails() {
+        return `
+      <div class="detail-form-row">
+        <div class="detail-form-group">
+          <label for="driverType">Driver Type</label>
+          <select id="driverType">
+            <option value="" disabled selected hidden>Select Owner / Driver / Both</option>
+            <option value="owner">Owner</option>
+            <option value="driver">Driver</option>
+            <option value="both">Both</option>
+          </select>
+        </div>
+        <div class="detail-form-group">
+          <label for="serviceType">Service Type</label>
+          <select id="serviceType">
+            <option value="" disabled selected hidden>Select Fleet / Attachment</option>
+            <option value="fleet">Fleet</option>
+            <option value="attachment">Attachment</option>
+          </select>
+        </div>
+        <div class="detail-form-group">
+          <label for="driverID">Driver ID</label>
+          <input type="text" id="driverID" placeholder="Enter ID">
+        </div>
+      </div>
+      ${this.renderProfilePicture()}
+      <div class="detail-form-row">
+        <div class="detail-form-group">
+          <label for="fullName">Full Name</label>
+          <input type="text" id="fullName" placeholder="Enter Name">
+        </div>
+        <div class="detail-form-group">
+          <label for="phoneNumber">Phone Number</label>
+          <input type="text" id="phoneNumber" placeholder="Enter Number">
+        </div>
+        <div class="detail-form-group">
+          <label for="gender">Gender</label>
+          <select id="gender">
+            <option value="" disabled selected hidden>Choose Gender</option>
+            <option>Male</option>
+            <option>Female</option>
+          </select>
+        </div>
+        <div class="detail-form-group">
+          <label for="dob">Date of Birth</label>
+          <input type="date" id="dob" placeholder="DD/MM/YYYY">
+        </div>
+      </div>
+    `;
+    }
+    renderProfilePicture() {
+        return `
+      <div class="Profile">
+        <div class="profile-row">
+          <img id="profilePicturePreview" class="profile-pic" src="${0, _group287202XPngDefault.default}" alt="Profile Picture" style="height: 95px;">
+          <div class="pic">
+            <label for="profilePicture">Profile Picture</label>
+            <p style="color: #969292; max-width: 100%;">Maximum size: 2 MB | Minimum Resolution: 1000px, Format: JPG, PNG</p>
+            <input type="file" id="profilePicture" accept="image/jpeg, image/png">
+          </div>
+        </div>
+      </div>
+    `;
+    }
+    renderAddressDetails() {
+        return `
+      <div class="section-title">
+        <h3>Address Details</h3>
+      </div>
+      <div class="detail-form-row">
+        <div class="detail-form-group">
+          <label for="addressLine1">Address Line 1</label>
+          <input type="text" id="addressLine1" placeholder="Enter Address">
+        </div>
+        <div class="detail-form-group">
+          <label for="addressLine2">Address Line 2</label>
+          <input type="text" id="addressLine2" placeholder="Enter Address">
+        </div>
+        <div class="detail-form-group">
+          <label for="city">City</label>
+          <input type="text" id="city" placeholder="Enter City">
+        </div>
+        <div class="detail-form-group">
+          <label for="state">State</label>
+          <select id="state">
+            <option value="" disabled selected hidden>Select State</option>
+            <option value="TamilNadu">Tamil Nadu</option>
+            <option value="Kerala">Kerala</option>
+            <option value="Karnataka">Karnataka</option>
+          </select>
+        </div>
+      </div>
+      <div class="detail-form-row">
+        <div class="detail-form-group">
+          <label for="country">Country</label>
+          <select id="country">
+            <option value="" disabled selected hidden>Select Country</option>
+            <option value="India">India</option>
+            <option value="Sri Lanka">Sri Lanka</option>
+            <option value="Japan">Japan</option>
+          </select>
+        </div>
+        <div class="detail-form-group">
+          <label for="pinCode">Pin Code</label>
+          <input type="text" id="pinCode" placeholder="Enter Pin Code">
+        </div>
+      </div>
+    `;
+    }
+    renderButtons() {
+        return `
+      <div class="detail-form-buttons">
+        <button type="button" class="cancel-btn">Cancel</button>
+        <button type="button" id="next-btn" class="next-btn">Next</button>
+      </div>`;
+    }
     addEventListeners(nextPageCallback) {
         const profilePictureInput = document.getElementById("profilePicture");
-        const profilePicturePreview = document.getElementById("profilePicturePreview");
         profilePictureInput.addEventListener("change", (e)=>{
-            const file = e.target.files[0];
-            if (file) {
-                if (file.size > 2097152) {
-                    alert("File size exceeds 2MB.");
-                    profilePictureInput.value = "";
-                    profilePicturePreview.src = "";
-                    return;
-                }
-                const reader = new FileReader();
-                reader.onload = (event)=>{
-                    profilePicturePreview.src = event.target.result;
-                };
-                reader.readAsDataURL(file);
-            // this.uploadedProfilePicture = file;
-            }
+            this.handleProfilePictureChange(e);
         });
         const nextBtn = document.getElementById("next-btn");
         nextBtn.addEventListener("click", async (event)=>{
-            event.preventDefault();
-            try {
-                const formData = this.collectFormData();
-                const result = await (0, _apiCallsJs.addPersonalDetails)(formData); //apicalls
-                if (result.success) nextPageCallback();
-                else console.error("Error response from server:", result.error);
-            } catch (error) {
-                console.error("Error during form submission:", error);
-            }
+            await this.handleNextButtonClick(event, nextPageCallback);
         });
+    }
+    handleProfilePictureChange(event) {
+        const file = event.target.files[0];
+        const profilePicturePreview = document.getElementById("profilePicturePreview");
+        if (file) {
+            if (file.size > 2097152) {
+                alert("File size exceeds 2MB.");
+                event.target.value = "";
+                profilePicturePreview.src = "";
+                return;
+            }
+            const reader = new FileReader();
+            reader.onload = (e)=>{
+                profilePicturePreview.src = e.target.result;
+                this.uploadedProfilePictureUrl = e.target.result; // Store the URL for later use
+            };
+            reader.readAsDataURL(file);
+        }
+    }
+    async handleNextButtonClick(event, nextPageCallback) {
+        event.preventDefault();
+        try {
+            const formData = this.collectFormData();
+            const result = await addPersonalDetails(formData); // API calls
+            if (result.success) nextPageCallback();
+            else console.error("Error response from server:", result.error);
+        } catch (error) {
+            console.error("Error during form submission:", error);
+        }
     }
     collectFormData() {
         const formData = new FormData();
@@ -998,143 +1026,229 @@ class PersonalDetail {
         if (profilePicture) formData.append("profilePicture", profilePicture);
         return formData;
     }
-    btn_render() {
-        return `
-      <div class="detail-form-buttons">
-        <button type="button" class="cancel-btn">Cancel</button>
-        <button type="button" id="next-btn" class="next-btn">Next</button>
-      </div>`;
-    }
 }
 class VehicleDetails {
     constructor(){
-        this.uploadedvehiclePictureUrl = "";
+        this.uploadedVehiclePictureUrl = "";
     }
     render() {
         return `
-        <div class="container-1">
+      <div class="container-1">
         <h2>Vehicle Details</h2>
         <form>
-            <div class="veh-form-row">
-                <div class="veh-form-group">
-                    <label for="drivingExperience">Driving Experience</label>
-                    <input type="text" id="drivingExperience" name="drivingExperience"
-                        placeholder="Enter Years of Experience">
-                </div>
-                <div class="veh-form-group">
-                    <label for="rideType">Ride Type</label>
-                    <select id="rideType" name="rideType">
-                        <option value="" disabled selected>Select Regular / Office / Both</option>
-                        <option value="Regular">Regular</option>
-                        <option value="Office">Office</option>
-                        <option value="Both">Both</option>
-                    </select>
-                </div>
-            </div>
-
-            <div class="veh-form-row">
-                <div class="veh-form-group">
-                    <label for="vehicleRegNo">Vehicle Registration No</label>
-                    <input type="text" id="vehicleRegNo" name="vehicleRegNo" placeholder="Enter Registration No">
-                </div>
-                <div class="veh-form-group">
-                    <label for="vehicleType">Vehicle Type</label>
-                    <select id="vehicleType" name="vehicleType">
-                        <option value="" disabled selected>Select Vehicle Type</option>
-                        <option value="Sedan">Sedan</option>
-                        <option value="SUV">SUV</option>
-                        <option value="Truck">Truck</option>
-                    </select>
-                </div>
-                <div class="veh-form-group">
-                    <label for="vehicleBrand">Vehicle Brand</label>
-                    <select id="vehicleBrand" name="vehicleBrand">
-                        <option value="" disabled selected>Select Vehicle Brand</option>
-                        <option value="Toyota">Toyota</option>
-                        <option value="Ford">Ford</option>
-                    </select>
-                </div>
-                <div class="veh-form-group">
-                    <label for="vehicleModel">Vehicle Model</label>
-                    <select id="vehicleModel" name="vehicleModel">
-                        <option value="" disabled selected>Select Vehicle Model</option>
-                        <option value="Corolla">Corolla</option>
-                        <option value="F-150">F-150</option>
-                    </select>
-                </div>
-            </div>
-
-            <div class="veh-form-row">
-                <div class="veh-form-group">
-                    <label for="vehicleColor">Vehicle Color</label>
-                    <input type="text" id="vehicleColor" name="vehicleColor" placeholder="Enter Vehicle Color">
-                </div>
-                <div class="veh-form-group">
-                    <label for="fuelType">Fuel Type</label>
-                    <select id="fuelType" name="fuelType">
-                        <option value="" disabled selected>Select Fuel Type</option>
-                        <option value="Petrol">Petrol</option>
-                        <option value="Diesel">Diesel</option>
-                        <option value="Electric">Electric</option>
-                    </select>
-                </div>
-                <div class="veh-form-group">
-                    <label for="manufactureYear">Manufacture Year</label>
-                    <select id="manufactureYear" name="manufactureYear">
-                        <option value="" disabled selected>Select Manufacture Year</option>
-                        <option value="2020">2020</option>
-                        <option value="2019">2019</option>
-                    </select>
-                </div>
-                <div class="veh-form-group">
-                    <label for="seatCapacity">Seat Capacity</label>
-                    <select id="seatCapacity" name="seatCapacity">
-                        <option value="" disabled selected>Select Seat Capacity</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                    </select>
-                </div>
-            </div>
-
-            <div class="veh-form-row">
-                <div class="veh-form-group">
-                    <label for="mileageRange">Mileage Range</label>
-                    <select id="mileageRange" name="mileageRange">
-                        <option value="" disabled selected>Select Mileage Range</option>
-                        <option value="10-15">10-15 kmpl</option>
-                        <option value="15-20">15-20 kmpl</option>
-                    </select>
-                </div>
-
-            </div>
-            
-            <div class="Profile">
-                <div class="profile-row">
-                    <img id="vehiclePicturePreview" class="profile-pic" src=${0, _group287212XPngDefault.default} alt="Vehicle Image" style="height: 95px;">
-                    <div class="pic">
-                        <label for="profilePicture">Vehicle Picture</label>
-                        <p style="color: #969292;">Maximum size : 2 MBI Minimum Resolution : 1000px, Format :
-                            JPG, PNG
-                        </p>
-                        <input type="file" id="vehiclePicture" accept="image/jpeg, image/png">
-                    </div>
-                </div>
-            </div>
+          ${this.renderVehicleForm()}
+          ${this.renderProfilePicture()}
         </form>
-        </div>
-        ${this.btn_render()}
-        
-        <br><br>
-        `;
+      </div>
+      ${this.renderButtons()}
+      <br><br>
+    `;
     }
-    btn_render() {
+    renderVehicleForm() {
         return `
-    <div class="form-buttons">
+      <div class="veh-form-row">
+        ${this.renderDrivingExperience()}
+        ${this.renderRideType()}
+      </div>
+      <div class="veh-form-row">
+        ${this.renderVehicleRegistration()}
+        ${this.renderVehicleType()}
+        ${this.renderVehicleBrand()}
+        ${this.renderVehicleModel()}
+      </div>
+      <div class="veh-form-row">
+        ${this.renderVehicleColor()}
+        ${this.renderFuelType()}
+        ${this.renderManufactureYear()}
+        ${this.renderSeatCapacity()}
+      </div>
+      <div class="veh-form-row">
+        ${this.renderMileageRange()}
+      </div>
+    `;
+    }
+    renderDrivingExperience() {
+        return `
+      <div class="veh-form-group">
+        <label for="drivingExperience">Driving Experience</label>
+        <input type="text" id="drivingExperience" name="drivingExperience" placeholder="Enter Years of Experience">
+      </div>
+    `;
+    }
+    renderRideType() {
+        return `
+      <div class="veh-form-group">
+        <label for="rideType">Ride Type</label>
+        <select id="rideType" name="rideType">
+          <option value="" disabled selected>Select Regular / Office / Both</option>
+          <option value="Regular">Regular</option>
+          <option value="Office">Office</option>
+          <option value="Both">Both</option>
+        </select>
+      </div>
+    `;
+    }
+    renderVehicleRegistration() {
+        return `
+      <div class="veh-form-group">
+        <label for="vehicleRegNo">Vehicle Registration No</label>
+        <input type="text" id="vehicleRegNo" name="vehicleRegNo" placeholder="Enter Registration No">
+      </div>
+    `;
+    }
+    renderVehicleType() {
+        return `
+      <div class="veh-form-group">
+        <label for="vehicleType">Vehicle Type</label>
+        <select id="vehicleType" name="vehicleType">
+          <option value="" disabled selected>Select Vehicle Type</option>
+          <option value="Sedan">Sedan</option>
+          <option value="SUV">SUV</option>
+          <option value="Truck">Truck</option>
+        </select>
+      </div>
+    `;
+    }
+    renderVehicleBrand() {
+        return `
+      <div class="veh-form-group">
+        <label for="vehicleBrand">Vehicle Brand</label>
+        <select id="vehicleBrand" name="vehicleBrand">
+          <option value="" disabled selected>Select Vehicle Brand</option>
+          <option value="Toyota">Toyota</option>
+          <option value="Ford">Ford</option>
+        </select>
+      </div>
+    `;
+    }
+    renderVehicleModel() {
+        return `
+      <div class="veh-form-group">
+        <label for="vehicleModel">Vehicle Model</label>
+        <select id="vehicleModel" name="vehicleModel">
+          <option value="" disabled selected>Select Vehicle Model</option>
+          <option value="Corolla">Corolla</option>
+          <option value="F-150">F-150</option>
+        </select>
+      </div>
+    `;
+    }
+    renderVehicleColor() {
+        return `
+      <div class="veh-form-group">
+        <label for="vehicleColor">Vehicle Color</label>
+        <input type="text" id="vehicleColor" name="vehicleColor" placeholder="Enter Vehicle Color">
+      </div>
+    `;
+    }
+    renderFuelType() {
+        return `
+      <div class="veh-form-group">
+        <label for="fuelType">Fuel Type</label>
+        <select id="fuelType" name="fuelType">
+          <option value="" disabled selected>Select Fuel Type</option>
+          <option value="Petrol">Petrol</option>
+          <option value="Diesel">Diesel</option>
+          <option value="Electric">Electric</option>
+        </select>
+      </div>
+    `;
+    }
+    renderManufactureYear() {
+        return `
+      <div class="veh-form-group">
+        <label for="manufactureYear">Manufacture Year</label>
+        <select id="manufactureYear" name="manufactureYear">
+          <option value="" disabled selected>Select Manufacture Year</option>
+          <option value="2020">2020</option>
+          <option value="2019">2019</option>
+        </select>
+      </div>
+    `;
+    }
+    renderSeatCapacity() {
+        return `
+      <div class="veh-form-group">
+        <label for="seatCapacity">Seat Capacity</label>
+        <select id="seatCapacity" name="seatCapacity">
+          <option value="" disabled selected>Select Seat Capacity</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+      </div>
+    `;
+    }
+    renderMileageRange() {
+        return `
+      <div class="veh-form-group">
+        <label for="mileageRange">Mileage Range</label>
+        <select id="mileageRange" name="mileageRange">
+          <option value="" disabled selected>Select Mileage Range</option>
+          <option value="10-15">10-15 kmpl</option>
+          <option value="15-20">15-20 kmpl</option>
+        </select>
+      </div>
+    `;
+    }
+    renderProfilePicture() {
+        return `
+      <div class="Profile">
+        <div class="profile-row">
+          <img id="vehiclePicturePreview" class="profile-pic" src=${0, _group287212XPngDefault.default} alt="Vehicle Image" style="height: 95px;">
+          <div class="pic">
+            <label for="vehiclePicture">Profile Picture</label>
+            <p style="color: #969292;">Maximum size : 2 MB. Minimum Resolution : 1000px, Format : JPG, PNG</p>
+            <input type="file" id="vehiclePicture" accept="image/jpeg, image/png">
+          </div>
+        </div>
+      </div>
+    `;
+    }
+    renderButtons() {
+        return `
+      <div class="form-buttons">
         <button type="button" class="cancel-btn">Cancel</button>
         <button type="button" class="back-btn">Back</button>
         <button type="button" id="next-btn-v" class="next-btn">Next</button>
-        </div>
-`;
+      </div>
+    `;
+    }
+    addEventListeners(nextPageCallback) {
+        const vehiclePictureInput = document.getElementById("vehiclePicture");
+        vehiclePictureInput.addEventListener("change", (e)=>this.handleProfilePictureChange(e));
+        const nextBtn = document.getElementById("next-btn-v");
+        nextBtn.addEventListener("click", async (event)=>{
+            await this.handleNextButtonClick(event, nextPageCallback);
+        });
+    }
+    handleProfilePictureChange(event) {
+        const file = event.target.files[0];
+        const vehiclePicturePreview = document.getElementById("vehiclePicturePreview");
+        if (file) {
+            if (file.size > 2097152) {
+                alert("File size exceeds 2MB.");
+                event.target.value = "";
+                vehiclePicturePreview.src = "";
+                return;
+            }
+            const reader = new FileReader();
+            reader.onload = (event)=>{
+                vehiclePicturePreview.src = event.target.result;
+            };
+            reader.readAsDataURL(file);
+            this.uploadedVehiclePictureUrl = file;
+        }
+    }
+    async handleNextButtonClick(event, nextPageCallback) {
+        event.preventDefault();
+        try {
+            const formData = this.collectVehicleFormData();
+            const result = await addVehicleDetails(formData); // API call
+            if (result.success) nextPageCallback();
+            else console.error("Error response from server:", result.error);
+        } catch (error) {
+            console.error("Error during form submission:", error);
+        }
     }
     collectVehicleFormData() {
         const formData = new FormData();
@@ -1150,158 +1264,10 @@ class VehicleDetails {
         formData.append("seatCapacity", document.getElementById("seatCapacity").value);
         formData.append("mileageRange", document.getElementById("mileageRange").value);
         const vehiclePicture = document.getElementById("vehiclePicture").files[0];
-        if (vehiclePicture) formData.append("vehiclePicture", vehiclePicture);
+        // if (vehiclePicture) {
+        formData.append("vehiclePicture", vehiclePicture); // Only append if file exists
+        // }
         return formData;
-    }
-    addEventListeners(nextPageCallback) {
-        const vehiclePictureInput = document.getElementById("vehiclePicture");
-        const vehiclePicturePreview = document.getElementById("vehiclePicturePreview");
-        vehiclePictureInput.addEventListener("change", (e)=>{
-            const file = e.target.files[0];
-            if (file) {
-                if (file.size > 2097152) {
-                    alert("File size exceeds 2MB.");
-                    vehiclePictureInput.value = "";
-                    vehiclePicturePreview.src = "";
-                    return;
-                }
-                const reader = new FileReader();
-                reader.onload = (event)=>{
-                    vehiclePicturePreview.src = event.target.result;
-                };
-                reader.readAsDataURL(file);
-                this.uploadedvehiclePicture = file;
-            }
-        });
-        const nextBtn = document.getElementById("next-btn-v");
-        nextBtn.addEventListener("click", async (event)=>{
-            event.preventDefault();
-            try {
-                const formData = this.collectVehicleFormData();
-                const result = await (0, _apiCallsJs.addVehicleDetails)(formData);
-                if (result.success) nextPageCallback();
-                else console.error("Error response from server:", result.error);
-            } catch (error) {
-                console.error("Error during form submission:", error);
-            }
-        });
-    }
-}
-class BankDetails {
-    constructor(){
-        this.uploadedBankPictureUrl = "";
-    }
-    render() {
-        return `
-    <div class="container-1">
-        <div class="bank-details-section">
-            <div class="section-title">
-                <h2>Primary Bank Details</h2>
-            </div>
-            <form>
-                <div class="bank-form-row">
-                    <div class="bank-form-group">
-                        <label for="accountHolderName">Account Holders Name</label>
-                        <input type="text" id="accountHolderName" placeholder="Enter Account Holders Name">
-                    </div>
-                    <div class="bank-form-group">
-                        <label for="accountNumber">Account Number</label>
-                        <input type="text" id="accountNumber" placeholder="Enter Account No">
-                    </div>
-                    <div class="bank-form-group">
-                        <label for="confirmAccountNumber">Confirm Account Number</label>
-                        <input type="text" id="confirmAccountNumber" placeholder="Enter Account No">
-                    </div>
-                    <div class="bank-form-group">
-                        <label for="bankName">Bank Name</label>
-                        <select id="bankName">
-                            <option value="" disabled selected>Select Bank</option>
-                            <option value="bank1">Bank 1</option>
-                            <option value="bank2">Bank 2</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="Profile">
-                    <div class="profile-row">
-                        <img id="PassBookPicturePreview" class="profile-pic" src=${0, _group287222XPngDefault.default} alt="bankpass" style="height: 95px;">
-                        <div class="pic">
-                            <label for="PassBookPicture">PassBook Picture</label>
-                            <p style="color: #969292;">Maximum size : 2 MBI Minimum Resolution : 1000px, Format :
-                                JPG, PNG
-                            </p>
-                            <input type="file" id="PassBookPicture" accept="image/jpeg, image/png">
-                        </div>
-
-                    </div>
-                </div>
-
-                <div class="Add">
-                    <img src=${0, _path385112XPngDefault.default} alt="">
-                    <a href="#" class="add-secondary-bank">Add Secondary Bank
-                        Details</a>
-                </div>
-            </form>
-        </div>
-        ${this.btn_render()}
-        
-        `;
-    }
-    addEventListeners(nextPageCallback) {
-        const BookPictureInput = document.getElementById("PassBookPicture");
-        const BookPicturePreview = document.getElementById("PassBookPicturePreview");
-        // Event listener for the profile picture input
-        BookPictureInput.addEventListener("change", (e)=>{
-            const file = e.target.files[0];
-            if (file) {
-                // Check for file size (max 2MB)
-                if (file.size > 2097152) {
-                    alert("File size exceeds 2MB.");
-                    BookPictureInput.value = "";
-                    BookPicturePreview.src = "";
-                    return;
-                }
-                const reader = new FileReader();
-                reader.onload = (event)=>{
-                    BookPicturePreview.src = event.target.result;
-                };
-                reader.readAsDataURL(file);
-                this.uploadedBankPicture = file;
-            }
-        });
-        const nextBtn = document.getElementById("next-btn-b");
-        nextBtn.addEventListener("click", async (event)=>{
-            event.preventDefault();
-            try {
-                const formData = this.collectBankFormData();
-                const result = await (0, _apiCallsJs.addBankDetails)(formData); // Send data to server
-                if (result.success) nextPageCallback();
-                else console.error("Error response from server:", result.error);
-            } catch (error) {
-                console.error("Error during form submission:", error);
-            }
-        });
-    }
-    collectBankFormData() {
-        const formData = new FormData();
-        // Collecting data from the form inputs
-        formData.append("accountHolderName", document.getElementById("accountHolderName").value);
-        formData.append("accountNumber", document.getElementById("accountNumber").value);
-        formData.append("confirmAccountNumber", document.getElementById("confirmAccountNumber").value);
-        formData.append("bankName", document.getElementById("bankName").value);
-        // Collecting the profile picture file if selected
-        const PassBookPicture = document.getElementById("PassBookPicture").files[0];
-        if (PassBookPicture) formData.append("PassBookPicture", PassBookPicture);
-        return formData;
-    }
-    btn_render() {
-        return `
-    <div class="form-buttons">
-        <button type="button" class="cancel-btn">Cancel</button>
-        <button type="button" class="back-btn">Back</button>
-        <button type="button" id="next-btn-b" class="next-btn">Next</button>
-        </div>
-    `;
     }
 }
 class ClientDetails {
@@ -1365,7 +1331,7 @@ class ClientDetails {
             event.preventDefault();
             try {
                 const formData = this.collectClientFormData();
-                const result = await (0, _apiCallsJs.addClientDetails)(formData);
+                const result = await addClientDetails(formData);
                 if (result.success) nextPageCallback();
                 else console.error("Error response from server:", result.error);
             } catch (error) {
@@ -1405,7 +1371,7 @@ class ClientDetails {
         formData.append("siteName", siteName);
         formData.append("location", document.getElementById("location").value);
         formData.append("tripType", document.getElementById("tripType").value);
-        return formData; // Return the FormData object
+        return formData;
     }
     btn_render() {
         return `
@@ -1415,6 +1381,135 @@ class ClientDetails {
         <button type="button" id="next-btn-c" class="next-btn">Next</button>
         </div>
     `;
+    }
+}
+class BankDetails {
+    constructor(){
+        this.config = {
+            bankNames: [
+                "Indian Bank",
+                "Central Bank",
+                "SBI"
+            ],
+            accountHolderLabel: "Account Holder's Name",
+            accountNumberLabel: "Account Number",
+            confirmAccountNumberLabel: "Confirm Account Number",
+            profilePictureLabel: "Profile Picture",
+            uploadedBankPictureUrl: ""
+        };
+    }
+    render() {
+        return `
+    <div class="container-1">
+        <div class="bank-details-section">
+            <div class="section-title">
+                <h2>Primary Bank Details</h2>
+            </div>
+            <form>
+                <div class="bank-form-row">
+                    ${this.renderInputField("accountHolderName", this.config.accountHolderLabel, "Enter Account Holders Name")}
+                    ${this.renderInputField("accountNumber", this.config.accountNumberLabel, "Enter Account No")}
+                    ${this.renderInputField("confirmAccountNumber", this.config.confirmAccountNumberLabel, "Enter Account No")}
+                    ${this.renderBankDropdown("bankName", "Select Bank", this.config.bankNames)}
+                </div>
+
+                <div class="Profile">
+                    ${this.renderProfilePictureSection("PassBookPicture", this.config.profilePictureLabel)}
+                </div>
+
+                <div class="Add">
+                    <img src=${0, _path385112XPngDefault.default} alt="">
+                    <a href="#" class="add-secondary-bank">Add Secondary Bank Details</a>
+                </div>
+            </form>
+        </div>
+        ${this.renderButtons()}
+    </div>
+    `;
+    }
+    renderInputField(id, label, placeholder) {
+        return `
+      <div class="bank-form-group">
+        <label for="${id}">${label}</label>
+        <input type="text" id="${id}" placeholder="${placeholder}">
+      </div>
+    `;
+    }
+    renderBankDropdown(id, label, bankNames) {
+        const options = bankNames.map((bank)=>`<option value="${bank}">${bank}</option>`).join("");
+        return `
+      <div class="bank-form-group">
+        <label for="${id}">${label}</label>
+        <select id="${id}">
+          <option value="" disabled selected>Select Bank</option>
+          ${options}
+        </select>
+      </div>
+    `;
+    }
+    renderProfilePictureSection(id, label) {
+        return `
+      <div class="profile-row">
+        <img id="PassBookPicturePreview" class="profile-pic" src=${0, _group287222XPngDefault.default} alt="bankpass" style="height: 95px;">
+        <div class="pic">
+          <label for="${id}">${label}</label>
+          <p style="color: #969292;">Maximum size : 2 MB | Minimum Resolution : 1000px, Format : JPG, PNG</p>
+          <input type="file" id="${id}" accept="image/jpeg, image/png">
+        </div>
+      </div>
+    `;
+    }
+    renderButtons() {
+        return `
+      <div class="form-buttons">
+        <button type="button" class="cancel-btn">Cancel</button>
+        <button type="button" class="back-btn">Back</button>
+        <button type="button" id="next-btn-b" class="next-btn">Next</button>
+      </div>
+    `;
+    }
+    addEventListeners(nextPageCallback) {
+        const BookPictureInput = document.getElementById("PassBookPicture");
+        const BookPicturePreview = document.getElementById("PassBookPicturePreview");
+        BookPictureInput.addEventListener("change", (e)=>{
+            const file = e.target.files[0];
+            if (file) {
+                if (file.size > 2097152) {
+                    alert("File size exceeds 2MB.");
+                    BookPictureInput.value = "";
+                    BookPicturePreview.src = "";
+                    return;
+                }
+                const reader = new FileReader();
+                reader.onload = (event)=>{
+                    BookPicturePreview.src = event.target.result;
+                };
+                reader.readAsDataURL(file);
+                this.uploadedBankPicture = file;
+            }
+        });
+        const nextBtn = document.getElementById("next-btn-b");
+        nextBtn.addEventListener("click", async (event)=>{
+            event.preventDefault();
+            try {
+                const formData = this.collectBankFormData();
+                const result = await addBankDetails(formData);
+                if (result.success) nextPageCallback();
+                else console.error("Error response from server:", result.error);
+            } catch (error) {
+                console.error("Error during form submission:", error);
+            }
+        });
+    }
+    collectBankFormData() {
+        const formData = new FormData();
+        formData.append("accountHolderName", document.getElementById("accountHolderName").value);
+        formData.append("accountNumber", document.getElementById("accountNumber").value);
+        formData.append("confirmAccountNumber", document.getElementById("confirmAccountNumber").value);
+        formData.append("bankName", document.getElementById("bankName").value);
+        const PassBookPicture = document.getElementById("PassBookPicture").files[0];
+        if (PassBookPicture) formData.append("PassBookPicture", PassBookPicture);
+        return formData;
     }
 }
 // Document.js
@@ -1680,7 +1775,7 @@ class Document {
         </div>
 
     </div>
-
+    
     <div class="form-buttons">
         ${this.btn_render()}
     </div>
@@ -1688,7 +1783,7 @@ class Document {
         `;
     }
     btn_render() {
-        return `
+        return ` 
             <button type="button" class="cancel-btn">Cancel</button>
       <button type="button" class="back-btn">Back</button>
       <button type="button" id="next-btn-s" class="sub-btn">SUBMIT</button>
@@ -1709,15 +1804,37 @@ class Document {
     }
 }
 
-},{"../API_CALLS.js":"9ld5A","../../ASSETS/IMAGES/group-28720@2x.png":"3voTF","../../ASSETS/IMAGES/group-28721@2x.png":"c3vFM","../../ASSETS/IMAGES/path-38511@2x.png":"49HUb","../../ASSETS/IMAGES/path-44933@2x.png":"cFqH2","../../ASSETS/IMAGES/path-44930@2x.png":"3QCyt","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../../ASSETS/IMAGES/group-28722@2x.png":"92dnb"}],"9ld5A":[function(require,module,exports) {
+},{"../../ASSETS/IMAGES/group-28720@2x.png":"3voTF","../../ASSETS/IMAGES/group-28721@2x.png":"c3vFM","../../ASSETS/IMAGES/group-28722@2x.png":"92dnb","../../ASSETS/IMAGES/path-38511@2x.png":"49HUb","../../ASSETS/IMAGES/path-44933@2x.png":"cFqH2","../../ASSETS/IMAGES/path-44930@2x.png":"3QCyt","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","7afe2b3386d5c050":"5zL6D"}],"3voTF":[function(require,module,exports) {
+module.exports = require("211a42a73487f4f8").getBundleURL("5Zsbl") + "group-28720@2x.08184d67.png" + "?" + Date.now();
+
+},{"211a42a73487f4f8":"lgJ39"}],"c3vFM":[function(require,module,exports) {
+module.exports = require("c4cac250fae1f3a9").getBundleURL("5Zsbl") + "group-28721@2x.c372c7ad.png" + "?" + Date.now();
+
+},{"c4cac250fae1f3a9":"lgJ39"}],"92dnb":[function(require,module,exports) {
+module.exports = require("22abf682037481c3").getBundleURL("5Zsbl") + "group-28722@2x.79622b3f.png" + "?" + Date.now();
+
+},{"22abf682037481c3":"lgJ39"}],"49HUb":[function(require,module,exports) {
+module.exports = require("d4f3e1adaa7ec691").getBundleURL("5Zsbl") + "path-38511@2x.515e7c06.png" + "?" + Date.now();
+
+},{"d4f3e1adaa7ec691":"lgJ39"}],"cFqH2":[function(require,module,exports) {
+module.exports = require("88b13953bd86e9e8").getBundleURL("5Zsbl") + "path-44933@2x.02c62fbf.png" + "?" + Date.now();
+
+},{"88b13953bd86e9e8":"lgJ39"}],"3QCyt":[function(require,module,exports) {
+module.exports = require("ef6039de16a4d19f").getBundleURL("5Zsbl") + "path-44930@2x.1efe0061.png" + "?" + Date.now();
+
+},{"ef6039de16a4d19f":"lgJ39"}],"5zL6D":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+var _proxyUrlsJs = require("./Proxy_Urls.js");
+var _proxyUrlsJsDefault = parcelHelpers.interopDefault(_proxyUrlsJs);
 const sendFormData = async (url, formData)=>{
     try {
-        console.log("Received form data:", formData);
-        for (let pair of formData.entries())console.log(pair[0] + ", " + pair[1]);
+        // console.log("Received form data:", formData);
+        // for (let pair of formData.entries()) {
+        //   console.log(pair[0] + ", " + pair[1]);
+        // }
         const response = await fetch(url, {
             method: "POST",
-            body: formData,
-            headers: {}
+            body: formData
         });
         const result = await response.json();
         if (response.ok) {
@@ -1735,29 +1852,25 @@ const sendFormData = async (url, formData)=>{
         throw new Error("Failed to submit form");
     }
 };
-exports.addClientDetails = (formData)=>sendFormData("http://localhost:4001/api/addClientDetails", formData);
-exports.addPersonalDetails = (formData)=>sendFormData("http://localhost:4001/api/addPersonalDetails", formData);
-exports.addVehicleDetails = (formData)=>sendFormData("http://localhost:4001/api/addVehicleDetails", formData);
-exports.addBankDetails = (formData)=>sendFormData("http://localhost:4001/api/addBankDetails", formData);
+// Export functions to send specific form data
+exports.addClientDetails = (formData)=>sendFormData(`${(0, _proxyUrlsJsDefault.default).API_FETCH_URL}/addClientDetails`, formData);
+exports.addPersonalDetails = (formData)=>sendFormData(`${(0, _proxyUrlsJsDefault.default).API_FETCH_URL}/addPersonalDetails`, formData);
+exports.addVehicleDetails = (formData)=>sendFormData(`${(0, _proxyUrlsJsDefault.default).API_FETCH_URL}/addVehicleDetails`, formData);
+exports.addBankDetails = (formData)=>sendFormData(`${(0, _proxyUrlsJsDefault.default).API_FETCH_URL}/addBankDetails`, formData);
+exports.addDocumentDetails = (formData)=>sendFormData(`${(0, _proxyUrlsJsDefault.default).API_FETCH_URL}/addDocumentDetails`, formData);
 
-},{}],"3voTF":[function(require,module,exports) {
-module.exports = require("211a42a73487f4f8").getBundleURL("5Zsbl") + "group-28720@2x.08184d67.png" + "?" + Date.now();
+},{"./Proxy_Urls.js":"4rzRr","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"4rzRr":[function(require,module,exports) {
+const PORT = 4001;
+const SERVER = `http://localhost:${PORT}`;
+const API_FETCH_URL = `${SERVER}/api`;
+const ORIGIN_URL = "http://localhost:1234";
+module.exports = {
+    API_FETCH_URL,
+    ORIGIN_URL,
+    SERVER,
+    PORT
+};
 
-},{"211a42a73487f4f8":"lgJ39"}],"c3vFM":[function(require,module,exports) {
-module.exports = require("c4cac250fae1f3a9").getBundleURL("5Zsbl") + "group-28721@2x.c372c7ad.png" + "?" + Date.now();
-
-},{"c4cac250fae1f3a9":"lgJ39"}],"49HUb":[function(require,module,exports) {
-module.exports = require("d4f3e1adaa7ec691").getBundleURL("5Zsbl") + "path-38511@2x.515e7c06.png" + "?" + Date.now();
-
-},{"d4f3e1adaa7ec691":"lgJ39"}],"cFqH2":[function(require,module,exports) {
-module.exports = require("88b13953bd86e9e8").getBundleURL("5Zsbl") + "path-44933@2x.02c62fbf.png" + "?" + Date.now();
-
-},{"88b13953bd86e9e8":"lgJ39"}],"3QCyt":[function(require,module,exports) {
-module.exports = require("ef6039de16a4d19f").getBundleURL("5Zsbl") + "path-44930@2x.1efe0061.png" + "?" + Date.now();
-
-},{"ef6039de16a4d19f":"lgJ39"}],"92dnb":[function(require,module,exports) {
-module.exports = require("22abf682037481c3").getBundleURL("5Zsbl") + "group-28722@2x.79622b3f.png" + "?" + Date.now();
-
-},{"22abf682037481c3":"lgJ39"}]},["khPp1","aIpi7"], "aIpi7", "parcelRequire94c2")
+},{}]},["khPp1","aIpi7"], "aIpi7", "parcelRequire94c2")
 
 //# sourceMappingURL=Main.f9a5cb92.js.map

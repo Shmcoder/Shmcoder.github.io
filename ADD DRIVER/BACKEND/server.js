@@ -1,26 +1,28 @@
-// server.js
+const URLs = require("./CONFIG/Proxy_url");
 const express = require("express");
 const cors = require("cors");
-const bodyParser = require("body-parser");
-const routes = require("./routes/Router");
+// const bodyParser = require("body-parser");
+const routes = require("./ROUTES/Router");
 
 const app = express();
-const port = 4001;
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(express.json({ limit: "10mb" }));
+app.use(express.urlencoded({ extended: true, limit: "10mb" }));
+
+// CORS configuration
 app.use(
   cors({
-    origin: "http://localhost:1234",
+    origin: URLs.ORIGIN_URL,
     methods: ["GET", "POST"],
     allowedHeaders: ["Content-Type", "Authorization"],
+    credentials: true,
   })
 );
 
-app.use(bodyParser.json());
-// const upload = multer();
+// Use routes
 app.use("/api", routes);
 
-app.listen(port, () => {
-  console.log(`Server running on http://localhost:${port}`);
+// Start the server
+app.listen(URLs.PORT, () => {
+  console.log(`Server is running on ${URLs.SERVER}`);
 });
