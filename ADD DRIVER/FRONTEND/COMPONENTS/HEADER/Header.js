@@ -16,7 +16,7 @@ export class RenderHeader {
     setInterval(() => {
       this.updateDateTime();
       this.renderLive();
-    }, 60000); // 60000 ms = 1 minute
+    }, 10000); // 10000 ms = 10 Sec
   }
 
   updateDateTime() {
