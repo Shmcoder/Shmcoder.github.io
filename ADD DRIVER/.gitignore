@@ -1,0 +1,54 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment Variables
+**/CONFIG/.env
+**/CONFIG/Proxy_Urls
+# Node modules
+**/node_modules/
+
+# Build and Distribution Directories
+dist/
+**/dist/
+
+# Parcel Cache
+.parcel-cache/
+
+# Dependency Directory
+**/node_modules/
+**/package-lock.json
+
+# Coverage Directory
+coverage/
+**/coverage/
+
+# Frontend Build Outputs
+FRONTEND/dist/
+FRONTEND/.parcel-cache/
+
+# Static Assets (if not needed in version control)
+FRONTEND/ASSETS/
+
+# System Files
+.DS_Store
+Thumbs.db
+
+# Editor Directories and Files
+.vscode/
+.idea/
+*.swp
+*~
+
+# Backup Files
+*.bak
+*.tmp
+
+# Ignore compiled or transpiled JavaScript files
+**/*.js.map
+
+# Ignore additional folders in BACKEND
+BACKEND/Upload/
