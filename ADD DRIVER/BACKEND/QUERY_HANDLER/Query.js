@@ -21,12 +21,11 @@ const insertData = (table, data, res) => {
   });
 };
 
-exports.addPersonalDetailsQuery = (data, res) =>
-  insertData("personal_details", data, res);
-exports.addVehicleDetailsQuery = (data, res) =>
-  insertData("vehicle_details", data, res);
+exports.addPersonalDetailsQuery = (data, res) =>insertData("personal_details", data, res);
+exports.addVehicleDetailsQuery = (data, res) =>insertData("vehicle_details", data, res);
 exports.addBankDetailsQuery = (data, res) => insertData("bank_details", data, res);
-exports.addClientDetailsQuery = (data, res) =>
-  insertData("client_details", data, res);
+exports.addClientDetailsQuery = (data, res) =>insertData("client_details", data, res);
+
+
 // exports.addDocumentDetailsQuery = (data, res) =>
 //   insertData("document_details", data, res);
