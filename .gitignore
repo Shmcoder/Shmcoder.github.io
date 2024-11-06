@@ -7,7 +7,7 @@ yarn-error.log*
 
 # Environment Variables
 **/CONFIG/.env
-**/CONFIG/Proxy_Urls
+**/CONFIG/Proxy_url.js
 # Node modules
 **/node_modules/
 
