@@ -207,7 +207,6 @@ class PersonalDetail {
           ${this.renderButtons()}
         </form>
       </div>
-      <br><br>
     `;
   }
 

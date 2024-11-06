@@ -634,38 +634,115 @@ class RenderHeader {
     constructor(){
         this.HeaderTitle = "Driver Management";
         this.HeaderSubTitle = "Add New Driver";
-        this.date = "Dec 01 2022";
-        this.time = "10:00 AM";
         this.UserName = "Ezio Auditore";
         this.UserStatus = "Admin";
+        this.updateDateTime();
+        setInterval(()=>{
+            this.updateDateTime();
+            this.renderLive();
+        }, 60000); // 60000 ms = 1 minute
+    }
+    updateDateTime() {
+        const now = new Date();
+        this.date = now.toLocaleDateString("en-US", {
+            month: "short",
+            day: "2-digit",
+            year: "numeric"
+        });
+        this.time = now.toLocaleTimeString("en-US", {
+            hour: "2-digit",
+            minute: "2-digit",
+            hour12: true
+        });
     }
     render() {
         return `  
-            <div class="container-2">
-                <div class="left">
-                    <p style="color: #969292;">${this.HeaderTitle} / <b style="color: #000000;">${this.HeaderSubTitle}</b></p>
-                </div>
-                <div class="right">
-                    <p style="color: #969292;padding-right: 8px;">${this.date} | ${this.time}</p>
-                    <div class="icons">
-                        <img src="${0, _path140552XPngDefault.default}" alt="" style="width: 17px;height: 16px;">
-                        <p class="path"></p>
-                        <img src="${0, _path362XPngDefault.default}" alt="" style="width: 17px;height: 15.9px;">
-                        <p class="path"></p>
-                        <img src="${0, _path352XPngDefault.default}" alt="" style="width: 14px;height: 16px;">
-                    </div>
-                    <div class="col">
-                        <p style="font-size: 16px;"><b>${this.UserName}</b></p>
-                        <p style="font-size: 12px;color: #969292;">${this.UserStatus}</p>
-                    </div>
-                    <img src="${0, _ellipse122XPngDefault.default}" alt="" style="height: 55px; padding: 5px;">
-                </div>
-            </div>
-        `;
+      <div class="container-2">
+        <div class="left">
+          <p style="color: #969292;">${this.HeaderTitle} / <b style="color: #000000;">${this.HeaderSubTitle}</b></p>
+        </div>
+        <div class="right">
+          <p style="color: #969292;padding-right: 8px;" id="date-time">${this.date} | ${this.time}</p>
+          <div class="icons">
+            <img id="calender" src="${0, _path140552XPngDefault.default}" alt="" style="width: 17px;height: 16px;">
+            <p class="path"></p>
+            <img id="message" src="${0, _path362XPngDefault.default}" alt="" style="width: 17px;height: 15.9px; cursor: pointer;">
+            <p class="path"></p>
+            <img id="Notify" src="${0, _path352XPngDefault.default}" alt="" style="width: 14px;height: 16px; cursor: pointer;">
+          </div>
+          <div class="col">
+            <p style="font-size: 16px;"><b>${this.UserName}</b></p>
+            <p style="font-size: 12px;color: #969292;">${this.UserStatus}</p>
+          </div>
+          <img src="${0, _ellipse122XPngDefault.default}" alt="" style="height: 55px; padding: 5px;">
+        </div>
+        
+        <!-- Message Window -->
+        <div class="popup" id="messagePopup" style="display: none;">
+          <p>Messages: No new messages.</p>
+        </div>
+        
+        <!-- Notification Window -->
+        <div class="popup" id="notifyPopup" style="display: none;">
+          <p>Notifications: No new notifications.</p>
+        </div>
+      </div>
+    `;
+    }
+    setupEventListeners() {
+        const messageIcon = document.getElementById("message");
+        const notifyIcon = document.getElementById("notify");
+        const messagePopup = document.getElementById("messagePopup");
+        const notifyPopup = document.getElementById("notifyPopup");
+        // Toggle visibility of the message window
+        messageIcon.addEventListener("click", ()=>{
+            messagePopup.style.display = messagePopup.style.display === "none" ? "block" : "none";
+            notifyPopup.style.display = "none"; // Close the notification popup if open
+        });
+        // Toggle visibility of the notification window
+        notifyIcon.addEventListener("click", ()=>{
+            notifyPopup.style.display = notifyPopup.style.display === "none" ? "block" : "none";
+            messagePopup.style.display = "none"; // Close the message popup if open
+        });
+    }
+    // Re-render live date and time
+    renderLive() {
+        const dateTimeElement = document.getElementById("date-time");
+        if (dateTimeElement) dateTimeElement.textContent = `${this.date} | ${this.time}`;
     }
 }
 
-},{"../../ASSETS/IMAGES/ellipse-12@2x.png":"D9GvT","../../ASSETS/IMAGES/path-35@2x.png":"9gWMP","../../ASSETS/IMAGES/path-36@2x.png":"5Qc7s","../../ASSETS/IMAGES/path-14055@2x.png":"5O5NY","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"D9GvT":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../../ASSETS/IMAGES/ellipse-12@2x.png":"D9GvT","../../ASSETS/IMAGES/path-35@2x.png":"9gWMP","../../ASSETS/IMAGES/path-36@2x.png":"5Qc7s","../../ASSETS/IMAGES/path-14055@2x.png":"5O5NY"}],"gkKU3":[function(require,module,exports) {
+exports.interopDefault = function(a) {
+    return a && a.__esModule ? a : {
+        default: a
+    };
+};
+exports.defineInteropFlag = function(a) {
+    Object.defineProperty(a, "__esModule", {
+        value: true
+    });
+};
+exports.exportAll = function(source, dest) {
+    Object.keys(source).forEach(function(key) {
+        if (key === "default" || key === "__esModule" || Object.prototype.hasOwnProperty.call(dest, key)) return;
+        Object.defineProperty(dest, key, {
+            enumerable: true,
+            get: function() {
+                return source[key];
+            }
+        });
+    });
+    return dest;
+};
+exports.export = function(dest, destName, get) {
+    Object.defineProperty(dest, destName, {
+        enumerable: true,
+        get: get
+    });
+};
+
+},{}],"D9GvT":[function(require,module,exports) {
 module.exports = require("e978f52f6dfcb0b6").getBundleURL("5Zsbl") + "ellipse-12@2x.d0749343.png" + "?" + Date.now();
 
 },{"e978f52f6dfcb0b6":"lgJ39"}],"lgJ39":[function(require,module,exports) {
@@ -712,37 +789,7 @@ module.exports = require("a971bc9f18788920").getBundleURL("5Zsbl") + "path-36@2x
 },{"a971bc9f18788920":"lgJ39"}],"5O5NY":[function(require,module,exports) {
 module.exports = require("5d34887fcd6f5dd6").getBundleURL("5Zsbl") + "path-14055@2x.eb88cde9.png" + "?" + Date.now();
 
-},{"5d34887fcd6f5dd6":"lgJ39"}],"gkKU3":[function(require,module,exports) {
-exports.interopDefault = function(a) {
-    return a && a.__esModule ? a : {
-        default: a
-    };
-};
-exports.defineInteropFlag = function(a) {
-    Object.defineProperty(a, "__esModule", {
-        value: true
-    });
-};
-exports.exportAll = function(source, dest) {
-    Object.keys(source).forEach(function(key) {
-        if (key === "default" || key === "__esModule" || Object.prototype.hasOwnProperty.call(dest, key)) return;
-        Object.defineProperty(dest, key, {
-            enumerable: true,
-            get: function() {
-                return source[key];
-            }
-        });
-    });
-    return dest;
-};
-exports.export = function(dest, destName, get) {
-    Object.defineProperty(dest, destName, {
-        enumerable: true,
-        get: get
-    });
-};
-
-},{}],"kOwAI":[function(require,module,exports) {
+},{"5d34887fcd6f5dd6":"lgJ39"}],"kOwAI":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "Status", ()=>Status) // Export the Status class
@@ -832,6 +879,136 @@ var _path449332XPngDefault = parcelHelpers.interopDefault(_path449332XPng);
 var _path449302XPng = require("../../ASSETS/IMAGES/path-44930@2x.png");
 var _path449302XPngDefault = parcelHelpers.interopDefault(_path449302XPng);
 const { addPersonalDetails, addVehicleDetails, addClientDetails, addBankDetails } = require("7afe2b3386d5c050");
+class BankDetails {
+    constructor(){
+        this.config = {
+            bankNames: [
+                "Indian Bank",
+                "Central Bank",
+                "SBI",
+                "HDFC"
+            ],
+            accountHolderLabel: "Account Holder's Name",
+            accountNumberLabel: "Account Number",
+            confirmAccountNumberLabel: "Confirm Account Number",
+            profilePictureLabel: "Profile Picture",
+            uploadedBankPictureUrl: ""
+        };
+    }
+    render() {
+        return `
+    <div class="container-1">
+        <div class="bank-details-section">
+            <div class="section-title">
+                <h2>Primary Bank Details</h2>
+            </div>
+            <form>
+                <div class="bank-form-row">
+                    ${this.renderInputField("accountHolderName", this.config.accountHolderLabel, "Enter Account Holders Name")}
+                    ${this.renderInputField("accountNumber", this.config.accountNumberLabel, "Enter Account No")}
+                    ${this.renderInputField("confirmAccountNumber", this.config.confirmAccountNumberLabel, "Enter Account No")}
+                    ${this.renderBankDropdown("bankName", "Select Bank", this.config.bankNames)}
+                </div>
+
+                <div class="Profile">
+                    ${this.renderProfilePictureSection("PassBookPicture", this.config.profilePictureLabel)}
+                </div>
+
+                <div class="Add">
+                    <img src=${0, _path385112XPngDefault.default} alt="">
+                    <a href="#" class="add-secondary-bank">Add Secondary Bank Details</a>
+                </div>
+            </form>
+        </div>
+        ${this.renderButtons()}
+    </div>
+    `;
+    }
+    renderInputField(id, label, placeholder) {
+        return `
+      <div class="bank-form-group">
+        <label for="${id}">${label}</label>
+        <input type="text" id="${id}" placeholder="${placeholder}">
+      </div>
+    `;
+    }
+    renderBankDropdown(id, label, bankNames) {
+        const options = bankNames.map((bank)=>`<option value="${bank}">${bank}</option>`).join("");
+        return `
+      <div class="bank-form-group">
+        <label for="${id}">${label}</label>
+        <select id="${id}">
+          <option value="" disabled selected>Select Bank</option>
+          ${options}
+        </select>
+      </div>
+    `;
+    }
+    renderProfilePictureSection(id, label) {
+        return `
+      <div class="profile-row">
+        <img id="PassBookPicturePreview" class="profile-pic" src=${0, _group287222XPngDefault.default} alt="bankpass" style="height: 95px;">
+        <div class="pic">
+          <label for="${id}">${label}</label>
+          <p style="color: #969292;">Maximum size : 2 MB | Minimum Resolution : 1000px, Format : JPG, PNG</p>
+          <input type="file" id="${id}" accept="image/jpeg, image/png">
+        </div>
+      </div>
+    `;
+    }
+    renderButtons() {
+        return `
+      <div class="form-buttons">
+        <button type="button" class="cancel-btn">Cancel</button>
+        <button type="button" class="back-btn">Back</button>
+        <button type="button" id="next-btn-b" class="next-btn">Next</button>
+      </div>
+    `;
+    }
+    addEventListeners(nextPageCallback) {
+        const BookPictureInput = document.getElementById("PassBookPicture");
+        const BookPicturePreview = document.getElementById("PassBookPicturePreview");
+        BookPictureInput.addEventListener("change", (e)=>{
+            const file = e.target.files[0];
+            if (file) {
+                if (file.size > 2097152) {
+                    alert("File size exceeds 2MB.");
+                    BookPictureInput.value = "";
+                    BookPicturePreview.src = "";
+                    return;
+                }
+                const reader = new FileReader();
+                reader.onload = (event)=>{
+                    BookPicturePreview.src = event.target.result;
+                };
+                reader.readAsDataURL(file);
+                this.uploadedBankPicture = file;
+            }
+        });
+        const nextBtn = document.getElementById("next-btn-b");
+        nextBtn.addEventListener("click", async (event)=>{
+            event.preventDefault();
+            try {
+                const formData = this.collectBankFormData();
+                const result = await addBankDetails(formData);
+                if (result.success) nextPageCallback();
+                else console.error("Error response from server:", result.error);
+            } catch (error) {
+                console.error("Error during form submission:", error);
+            }
+        });
+    }
+    collectBankFormData() {
+        const formData = new FormData();
+        formData.append("accountHolderName", document.getElementById("accountHolderName").value);
+        formData.append("accountNumber", document.getElementById("accountNumber").value);
+        formData.append("confirmAccountNumber", document.getElementById("confirmAccountNumber").value);
+        formData.append("bankName", document.getElementById("bankName").value);
+        const PassBookPicture = document.getElementById("PassBookPicture").files[0];
+        if (PassBookPicture) formData.append("PassBookPicture", PassBookPicture);
+        return formData;
+    }
+}
 // PersonalDetails.js
 class PersonalDetail {
     constructor(){
@@ -849,7 +1026,6 @@ class PersonalDetail {
           ${this.renderButtons()}
         </form>
       </div>
-      <br><br>
     `;
     }
     renderPersonalDetails() {
@@ -1383,135 +1559,6 @@ class ClientDetails {
     `;
     }
 }
-class BankDetails {
-    constructor(){
-        this.config = {
-            bankNames: [
-                "Indian Bank",
-                "Central Bank",
-                "SBI"
-            ],
-            accountHolderLabel: "Account Holder's Name",
-            accountNumberLabel: "Account Number",
-            confirmAccountNumberLabel: "Confirm Account Number",
-            profilePictureLabel: "Profile Picture",
-            uploadedBankPictureUrl: ""
-        };
-    }
-    render() {
-        return `
-    <div class="container-1">
-        <div class="bank-details-section">
-            <div class="section-title">
-                <h2>Primary Bank Details</h2>
-            </div>
-            <form>
-                <div class="bank-form-row">
-                    ${this.renderInputField("accountHolderName", this.config.accountHolderLabel, "Enter Account Holders Name")}
-                    ${this.renderInputField("accountNumber", this.config.accountNumberLabel, "Enter Account No")}
-                    ${this.renderInputField("confirmAccountNumber", this.config.confirmAccountNumberLabel, "Enter Account No")}
-                    ${this.renderBankDropdown("bankName", "Select Bank", this.config.bankNames)}
-                </div>
-
-                <div class="Profile">
-                    ${this.renderProfilePictureSection("PassBookPicture", this.config.profilePictureLabel)}
-                </div>
-
-                <div class="Add">
-                    <img src=${0, _path385112XPngDefault.default} alt="">
-                    <a href="#" class="add-secondary-bank">Add Secondary Bank Details</a>
-                </div>
-            </form>
-        </div>
-        ${this.renderButtons()}
-    </div>
-    `;
-    }
-    renderInputField(id, label, placeholder) {
-        return `
-      <div class="bank-form-group">
-        <label for="${id}">${label}</label>
-        <input type="text" id="${id}" placeholder="${placeholder}">
-      </div>
-    `;
-    }
-    renderBankDropdown(id, label, bankNames) {
-        const options = bankNames.map((bank)=>`<option value="${bank}">${bank}</option>`).join("");
-        return `
-      <div class="bank-form-group">
-        <label for="${id}">${label}</label>
-        <select id="${id}">
-          <option value="" disabled selected>Select Bank</option>
-          ${options}
-        </select>
-      </div>
-    `;
-    }
-    renderProfilePictureSection(id, label) {
-        return `
-      <div class="profile-row">
-        <img id="PassBookPicturePreview" class="profile-pic" src=${0, _group287222XPngDefault.default} alt="bankpass" style="height: 95px;">
-        <div class="pic">
-          <label for="${id}">${label}</label>
-          <p style="color: #969292;">Maximum size : 2 MB | Minimum Resolution : 1000px, Format : JPG, PNG</p>
-          <input type="file" id="${id}" accept="image/jpeg, image/png">
-        </div>
-      </div>
-    `;
-    }
-    renderButtons() {
-        return `
-      <div class="form-buttons">
-        <button type="button" class="cancel-btn">Cancel</button>
-        <button type="button" class="back-btn">Back</button>
-        <button type="button" id="next-btn-b" class="next-btn">Next</button>
-      </div>
-    `;
-    }
-    addEventListeners(nextPageCallback) {
-        const BookPictureInput = document.getElementById("PassBookPicture");
-        const BookPicturePreview = document.getElementById("PassBookPicturePreview");
-        BookPictureInput.addEventListener("change", (e)=>{
-            const file = e.target.files[0];
-            if (file) {
-                if (file.size > 2097152) {
-                    alert("File size exceeds 2MB.");
-                    BookPictureInput.value = "";
-                    BookPicturePreview.src = "";
-                    return;
-                }
-                const reader = new FileReader();
-                reader.onload = (event)=>{
-                    BookPicturePreview.src = event.target.result;
-                };
-                reader.readAsDataURL(file);
-                this.uploadedBankPicture = file;
-            }
-        });
-        const nextBtn = document.getElementById("next-btn-b");
-        nextBtn.addEventListener("click", async (event)=>{
-            event.preventDefault();
-            try {
-                const formData = this.collectBankFormData();
-                const result = await addBankDetails(formData);
-                if (result.success) nextPageCallback();
-                else console.error("Error response from server:", result.error);
-            } catch (error) {
-                console.error("Error during form submission:", error);
-            }
-        });
-    }
-    collectBankFormData() {
-        const formData = new FormData();
-        formData.append("accountHolderName", document.getElementById("accountHolderName").value);
-        formData.append("accountNumber", document.getElementById("accountNumber").value);
-        formData.append("confirmAccountNumber", document.getElementById("confirmAccountNumber").value);
-        formData.append("bankName", document.getElementById("bankName").value);
-        const PassBookPicture = document.getElementById("PassBookPicture").files[0];
-        if (PassBookPicture) formData.append("PassBookPicture", PassBookPicture);
-        return formData;
-    }
-}
 // Document.js
 class Document {
     render() {
@@ -1789,6 +1836,46 @@ class Document {
       <button type="button" id="next-btn-s" class="sub-btn">SUBMIT</button>
             `;
     }
+    collectDocFormData() {
+        const formData = new FormData();
+        // Driver document fields
+        formData.append("aadharNumber", document.getElementById("aadhar-number").value);
+        formData.append("aadharDocument", document.getElementById("aadhar-file").files[0]);
+        formData.append("panNumber", document.getElementById("pan-number").value);
+        formData.append("panDocument", document.getElementById("pan-file").files[0]);
+        formData.append("badgeIDNumber", document.getElementById("badge-id").value);
+        formData.append("badgeStartDate", document.getElementById("start-date-badge").value);
+        formData.append("badgeExpiryDate", document.getElementById("expiry-date-badge").value);
+        formData.append("badgeIDDocument", document.getElementById("badge-file").files[0]);
+        formData.append("licenseNumber", document.getElementById("license-number").value);
+        formData.append("licenseStartDate", document.getElementById("start-date-license").value);
+        formData.append("licenseExpiryDate", document.getElementById("expiry-date-license").value);
+        formData.append("licenseDocument", document.getElementById("license-file").files[0]);
+        formData.append("pvcNumber", document.getElementById("pvc-number").value);
+        formData.append("pvcStartDate", document.getElementById("start-date-pvc").value);
+        formData.append("pvcExpiryDate", document.getElementById("expiry-date-pvc").value);
+        formData.append("pvcDocument", document.getElementById("pvc-file").files[0]);
+        // Vehicle document fields
+        formData.append("insurance_name_id", document.getElementById("insurance-id").value);
+        formData.append("insurance_start_date", document.getElementById("start-date-insurance").value);
+        formData.append("insurance_expiry_date", document.getElementById("expiry-date-insurance").value);
+        formData.append("insurance_document", document.getElementById("insurance-file").files[0]);
+        formData.append("rc_book_no", document.getElementById("rc-book").value);
+        formData.append("rc_book_start_date", document.getElementById("start-date-rc").value);
+        formData.append("rc_book_expiry_date", document.getElementById("expiry-date-rc").value);
+        formData.append("rc_book_document", document.getElementById("rc-book-file").files[0]);
+        formData.append("fitness_certificate", document.getElementById("fitness-certificate").value);
+        formData.append("fitness_certificate_start_date", document.getElementById("start-date-fitness").value);
+        formData.append("fitness_certificate_expiry_date", document.getElementById("expiry-date-fitness").value);
+        formData.append("fitness_certificate_document", document.getElementById("fitness-file").files[0]);
+        formData.append("vehicle_registration_number", document.getElementById("registration-no").value);
+        formData.append("vehicle_registration_document", document.getElementById("registration-file").files[0]);
+        formData.append("engine_number", document.getElementById("engine-number").value);
+        formData.append("engine_number_document", document.getElementById("engine-file").files[0]);
+        formData.append("chasis_number", document.getElementById("chassis-number").value);
+        formData.append("chasis_number_document", document.getElementById("chassis-file").files[0]);
+        return formData;
+    }
     handleFileUpload() {
         const fileInput = document.getElementById("fileUpload");
         const fileNameDisplay = document.querySelector(".file-name");
@@ -1828,10 +1915,8 @@ var _proxyUrlsJs = require("./Proxy_Urls.js");
 var _proxyUrlsJsDefault = parcelHelpers.interopDefault(_proxyUrlsJs);
 const sendFormData = async (url, formData)=>{
     try {
-        // console.log("Received form data:", formData);
-        // for (let pair of formData.entries()) {
-        //   console.log(pair[0] + ", " + pair[1]);
-        // }
+        console.log("Received form data:", formData);
+        for (let pair of formData.entries())console.log(pair[0] + ", " + pair[1]);
         const response = await fetch(url, {
             method: "POST",
             body: formData
