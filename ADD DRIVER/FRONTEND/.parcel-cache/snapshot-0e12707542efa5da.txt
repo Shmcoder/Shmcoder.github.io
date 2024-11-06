@@ -1,7 +1,7 @@
 9134
-67D:\Git\Shmcoder.github.io\ADD DRIVER\FRONTEND\dist\Main.f9a5cb92.js133753407642416576 0
 109D:\Git\Shmcoder.github.io\ADD DRIVER\FRONTEND\node_modules\htmlnano\lib\modules\removeRedundantAttributes.mjs133738092326430809 0
 76D:\Git\Shmcoder.github.io\ADD DRIVER\FRONTEND\node_modules\webpack\lib\rules133751963309956595 1
+67D:\Git\Shmcoder.github.io\ADD DRIVER\FRONTEND\dist\Main.f9a5cb92.js133753453075110723 0
 99D:\Git\Shmcoder.github.io\ADD DRIVER\FRONTEND\node_modules\sha.js\test\prepare\vectors\byte0039.dat133741595667117815 0
 80D:\Git\Shmcoder.github.io\ADD DRIVER\FRONTEND\node_modules\webpack\lib\container133751963300969196 1
 98D:\Git\Shmcoder.github.io\ADD DRIVER\FRONTEND\node_modules\css-tree\cjs\syntax\node\StyleSheet.cjs133738092326759848 0
@@ -29,6 +29,7 @@
 79D:\Git\Shmcoder.github.io\ADD DRIVER\FRONTEND\node_modules\json-schema-traverse133751963211693215 1
 75D:\Git\Shmcoder.github.io\ADD DRIVER\FRONTEND\node_modules\streamsearch\lib133751963272616086 1
 103D:\Git\Shmcoder.github.io\ADD DRIVER\FRONTEND\node_modules\caniuse-lite\data\features\input-datetime.js133738092332579632 0
+71D:\Git\Shmcoder.github.io\ADD DRIVER\FRONTEND\dist\Main.f9a5cb92.js.map133753453075194308 0
 93D:\Git\Shmcoder.github.io\ADD DRIVER\FRONTEND\node_modules\webpack\lib\serialization\types.js133738308605911211 0
 72D:\Git\Shmcoder.github.io\ADD DRIVER\FRONTEND\node_modules\source-map-js133751963268941570 1
 93D:\Git\Shmcoder.github.io\ADD DRIVER\FRONTEND\node_modules\@swc\helpers\cjs\_ts_generator.cjs133738092329895307 0
@@ -52,7 +53,7 @@
 80D:\Git\Shmcoder.github.io\ADD DRIVER\FRONTEND\node_modules\@types\node\README.md133738308588149808 0
 127D:\Git\Shmcoder.github.io\ADD DRIVER\FRONTEND\node_modules\@parcel\optimizer-htmlnano\node_modules\csso\lib\restructure\prepare133751962984488906 1
 134D:\Git\Shmcoder.github.io\ADD DRIVER\FRONTEND\node_modules\@parcel\optimizer-htmlnano\node_modules\css-tree\lib\syntax\node\Comment.js133738092316363672 0
-50D:\Git\Shmcoder.github.io\ADD DRIVER\FRONTEND\dist133753407642456568 1
+50D:\Git\Shmcoder.github.io\ADD DRIVER\FRONTEND\dist133753453075194308 1
 100D:\Git\Shmcoder.github.io\ADD DRIVER\FRONTEND\node_modules\lmdb\node_modules\node-addon-api\index.js133738092322440396 0
 56D:\Git\Shmcoder.github.io\ADD DRIVER\FRONTEND\COMPONENTS133751962940176219 1
 109D:\Git\Shmcoder.github.io\ADD DRIVER\FRONTEND\node_modules\webpack\schemas\plugins\schemes\HttpUriPlugin.json133738308607401660 0
@@ -9093,13 +9094,32 @@
 90D:\Git\Shmcoder.github.io\ADD DRIVER\FRONTEND\node_modules\.bin\update-browserslist-db.ps1133738092418192116 0
 71D:\Git\Shmcoder.github.io\ADD DRIVER\FRONTEND\node_modules\.bin\webpack133738308608821014 0
 75D:\Git\Shmcoder.github.io\ADD DRIVER\FRONTEND\node_modules\.bin\webpack.cmd133738308608821014 0
+77D:\Git\Shmcoder.github.io\ADD DRIVER\FRONTEND\dist\ellipse-12@2x.d0749343.png133753406917804756 0
+78D:\Git\Shmcoder.github.io\ADD DRIVER\FRONTEND\dist\group-28608@2x.ad767b4a.png133753406917941996 0
+78D:\Git\Shmcoder.github.io\ADD DRIVER\FRONTEND\dist\group-28720@2x.08184d67.png133753406917792704 0
 78D:\Git\Shmcoder.github.io\ADD DRIVER\FRONTEND\dist\group-28722@2x.4bae5707.png133738334975507600 0
+78D:\Git\Shmcoder.github.io\ADD DRIVER\FRONTEND\dist\group-28722@2x.79622b3f.png133753406917889586 0
+72D:\Git\Shmcoder.github.io\ADD DRIVER\FRONTEND\dist\Main.1d866c27.css.map133753406918390771 0
+72D:\Git\Shmcoder.github.io\ADD DRIVER\FRONTEND\dist\Main.3c6e9dfd.css.map133753406918011398 0
+68D:\Git\Shmcoder.github.io\ADD DRIVER\FRONTEND\dist\Main.7ff44ecb.css133753406917966995 0
+72D:\Git\Shmcoder.github.io\ADD DRIVER\FRONTEND\dist\Main.7ff44ecb.css.map133753406918011398 0
+68D:\Git\Shmcoder.github.io\ADD DRIVER\FRONTEND\dist\Main.8bfb2bff.css133753406918368823 0
+72D:\Git\Shmcoder.github.io\ADD DRIVER\FRONTEND\dist\Main.8bfb2bff.css.map133753406918390771 0
+68D:\Git\Shmcoder.github.io\ADD DRIVER\FRONTEND\dist\Main.969985e5.css133753406917792704 0
+72D:\Git\Shmcoder.github.io\ADD DRIVER\FRONTEND\dist\Main.f03027fe.css.map133753406917879209 0
+68D:\Git\Shmcoder.github.io\ADD DRIVER\FRONTEND\dist\Main.f486633d.css133753406917792704 0
+60D:\Git\Shmcoder.github.io\ADD DRIVER\FRONTEND\dist\Main.html133753402334475224 0
+77D:\Git\Shmcoder.github.io\ADD DRIVER\FRONTEND\dist\path-14055@2x.eb88cde9.png133753406917792704 0
+74D:\Git\Shmcoder.github.io\ADD DRIVER\FRONTEND\dist\path-36@2x.ccd7b9bf.png133753406917879209 0
+77D:\Git\Shmcoder.github.io\ADD DRIVER\FRONTEND\dist\path-38511@2x.515e7c06.png133753406917792704 0
+77D:\Git\Shmcoder.github.io\ADD DRIVER\FRONTEND\dist\path-44930@2x.1efe0061.png133753406917889586 0
+77D:\Git\Shmcoder.github.io\ADD DRIVER\FRONTEND\dist\path-44933@2x.02c62fbf.png133753406917929451 0
 73D:\Git\Shmcoder.github.io\ADD DRIVER\FRONTEND\CSS\ADD NEW DRIVER\bank.css133737386483059611 0
 75D:\Git\Shmcoder.github.io\ADD DRIVER\FRONTEND\CSS\ADD NEW DRIVER\Header.css133753406641622133 0
-65D:\Git\Shmcoder.github.io\ADD DRIVER\FRONTEND\CONFIG\Api_Calls.js133753381933080386 0
+65D:\Git\Shmcoder.github.io\ADD DRIVER\FRONTEND\CONFIG\Api_Calls.js133753500611071150 0
 64D:\Git\Shmcoder.github.io\ADD DRIVER\FRONTEND\COMPONENTS\DETAILS133751962939861466 1
 63D:\Git\Shmcoder.github.io\ADD DRIVER\FRONTEND\COMPONENTS\HEADER133751962939972364 1
-73D:\Git\Shmcoder.github.io\ADD DRIVER\FRONTEND\COMPONENTS\HEADER\Header.js133753407641945830 0
+73D:\Git\Shmcoder.github.io\ADD DRIVER\FRONTEND\COMPONENTS\HEADER\Header.js133753450499834927 0
 75D:\Git\Shmcoder.github.io\ADD DRIVER\FRONTEND\COMPONENTS\DETAILS\details.js133753396781083504 0
 115D:\Git\Shmcoder.github.io\ADD DRIVER\FRONTEND\ASSETS\IMAGES\04_ma_Driver Management_Add Driver_Personal Details.png133741598293243646 0
 111D:\Git\Shmcoder.github.io\ADD DRIVER\FRONTEND\ASSETS\IMAGES\04_md_Driver Management_Add Driver_Bank Details.png133741598277682484 0
@@ -9113,23 +9133,3 @@
 74D:\Git\Shmcoder.github.io\ADD DRIVER\FRONTEND\ASSETS\IMAGES\path-44928.png133730534818568477 0
 77D:\Git\Shmcoder.github.io\ADD DRIVER\FRONTEND\ASSETS\IMAGES\path-44933@2x.png133730534840449534 0
 77D:\Git\Shmcoder.github.io\ADD DRIVER\FRONTEND\ASSETS\IMAGES\path-45309@2x.png133731035394007184 0
-60D:\Git\Shmcoder.github.io\ADD DRIVER\FRONTEND\dist\Main.html133753402334475224 0
-68D:\Git\Shmcoder.github.io\ADD DRIVER\FRONTEND\dist\Main.969985e5.css133753406917792704 0
-68D:\Git\Shmcoder.github.io\ADD DRIVER\FRONTEND\dist\Main.f486633d.css133753406917792704 0
-78D:\Git\Shmcoder.github.io\ADD DRIVER\FRONTEND\dist\group-28720@2x.08184d67.png133753406917792704 0
-77D:\Git\Shmcoder.github.io\ADD DRIVER\FRONTEND\dist\path-38511@2x.515e7c06.png133753406917792704 0
-77D:\Git\Shmcoder.github.io\ADD DRIVER\FRONTEND\dist\path-14055@2x.eb88cde9.png133753406917792704 0
-77D:\Git\Shmcoder.github.io\ADD DRIVER\FRONTEND\dist\ellipse-12@2x.d0749343.png133753406917804756 0
-74D:\Git\Shmcoder.github.io\ADD DRIVER\FRONTEND\dist\path-36@2x.ccd7b9bf.png133753406917879209 0
-72D:\Git\Shmcoder.github.io\ADD DRIVER\FRONTEND\dist\Main.f03027fe.css.map133753406917879209 0
-77D:\Git\Shmcoder.github.io\ADD DRIVER\FRONTEND\dist\path-44930@2x.1efe0061.png133753406917889586 0
-78D:\Git\Shmcoder.github.io\ADD DRIVER\FRONTEND\dist\group-28722@2x.79622b3f.png133753406917889586 0
-77D:\Git\Shmcoder.github.io\ADD DRIVER\FRONTEND\dist\path-44933@2x.02c62fbf.png133753406917929451 0
-78D:\Git\Shmcoder.github.io\ADD DRIVER\FRONTEND\dist\group-28608@2x.ad767b4a.png133753406917941996 0
-68D:\Git\Shmcoder.github.io\ADD DRIVER\FRONTEND\dist\Main.7ff44ecb.css133753406917966995 0
-72D:\Git\Shmcoder.github.io\ADD DRIVER\FRONTEND\dist\Main.3c6e9dfd.css.map133753406918011398 0
-72D:\Git\Shmcoder.github.io\ADD DRIVER\FRONTEND\dist\Main.7ff44ecb.css.map133753406918011398 0
-68D:\Git\Shmcoder.github.io\ADD DRIVER\FRONTEND\dist\Main.8bfb2bff.css133753406918368823 0
-72D:\Git\Shmcoder.github.io\ADD DRIVER\FRONTEND\dist\Main.8bfb2bff.css.map133753406918390771 0
-72D:\Git\Shmcoder.github.io\ADD DRIVER\FRONTEND\dist\Main.1d866c27.css.map133753406918390771 0
-71D:\Git\Shmcoder.github.io\ADD DRIVER\FRONTEND\dist\Main.f9a5cb92.js.map133753407642446560 0

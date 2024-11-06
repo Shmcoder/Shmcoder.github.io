@@ -640,7 +640,7 @@ class RenderHeader {
         setInterval(()=>{
             this.updateDateTime();
             this.renderLive();
-        }, 60000); // 60000 ms = 1 minute
+        }, 10000); // 10000 ms = 10 Sec
     }
     updateDateTime() {
         const now = new Date();
@@ -666,9 +666,9 @@ class RenderHeader {
           <div class="icons">
             <img id="calender" src="${0, _path140552XPngDefault.default}" alt="" style="width: 17px;height: 16px;">
             <p class="path"></p>
-            <img id="message" src="${0, _path362XPngDefault.default}" alt="" style="width: 17px;height: 15.9px; cursor: pointer;">
+            <img id="message" src="${0, _path362XPngDefault.default}" alt="" style="width: 17px;height: 15.9px;">
             <p class="path"></p>
-            <img id="Notify" src="${0, _path352XPngDefault.default}" alt="" style="width: 14px;height: 16px; cursor: pointer;">
+            <img id="Notify" src="${0, _path352XPngDefault.default}" alt="" style="width: 14px;height: 16px;">
           </div>
           <div class="col">
             <p style="font-size: 16px;"><b>${this.UserName}</b></p>
@@ -676,36 +676,9 @@ class RenderHeader {
           </div>
           <img src="${0, _ellipse122XPngDefault.default}" alt="" style="height: 55px; padding: 5px;">
         </div>
-        
-        <!-- Message Window -->
-        <div class="popup" id="messagePopup" style="display: none;">
-          <p>Messages: No new messages.</p>
-        </div>
-        
-        <!-- Notification Window -->
-        <div class="popup" id="notifyPopup" style="display: none;">
-          <p>Notifications: No new notifications.</p>
-        </div>
       </div>
     `;
     }
-    setupEventListeners() {
-        const messageIcon = document.getElementById("message");
-        const notifyIcon = document.getElementById("notify");
-        const messagePopup = document.getElementById("messagePopup");
-        const notifyPopup = document.getElementById("notifyPopup");
-        // Toggle visibility of the message window
-        messageIcon.addEventListener("click", ()=>{
-            messagePopup.style.display = messagePopup.style.display === "none" ? "block" : "none";
-            notifyPopup.style.display = "none"; // Close the notification popup if open
-        });
-        // Toggle visibility of the notification window
-        notifyIcon.addEventListener("click", ()=>{
-            notifyPopup.style.display = notifyPopup.style.display === "none" ? "block" : "none";
-            messagePopup.style.display = "none"; // Close the message popup if open
-        });
-    }
-    // Re-render live date and time
     renderLive() {
         const dateTimeElement = document.getElementById("date-time");
         if (dateTimeElement) dateTimeElement.textContent = `${this.date} | ${this.time}`;

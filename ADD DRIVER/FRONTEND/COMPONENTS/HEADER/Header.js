@@ -4,15 +4,13 @@ import Message from "../../ASSETS/IMAGES/path-36@2x.png";
 import Calendar from "../../ASSETS/IMAGES/path-14055@2x.png";
 export class RenderHeader {
   constructor() {
-    this.HeaderTitle = 'Driver Management';
-    this.HeaderSubTitle = 'Add New Driver';
-    this.UserName = 'Ezio Auditore';
-    this.UserStatus = 'Admin';
+    this.HeaderTitle = "Driver Management";
+    this.HeaderSubTitle = "Add New Driver";
+    this.UserName = "Ezio Auditore";
+    this.UserStatus = "Admin";
 
-    // Initialize with current date and time
     this.updateDateTime();
-    
-    // Update date and time every minute
+
     setInterval(() => {
       this.updateDateTime();
       this.renderLive();
@@ -21,14 +19,14 @@ export class RenderHeader {
 
   updateDateTime() {
     const now = new Date();
-    this.date = now.toLocaleDateString('en-US', {
-      month: 'short',
-      day: '2-digit',
-      year: 'numeric',
+    this.date = now.toLocaleDateString("en-US", {
+      month: "short",
+      day: "2-digit",
+      year: "numeric",
     });
-    this.time = now.toLocaleTimeString('en-US', {
-      hour: '2-digit',
-      minute: '2-digit',
+    this.time = now.toLocaleTimeString("en-US", {
+      hour: "2-digit",
+      minute: "2-digit",
       hour12: true,
     });
   }
@@ -58,7 +56,6 @@ export class RenderHeader {
     `;
   }
 
-  // Re-render live date and time
   renderLive() {
     const dateTimeElement = document.getElementById("date-time");
     if (dateTimeElement) {
