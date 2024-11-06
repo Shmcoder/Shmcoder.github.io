@@ -12,6 +12,183 @@ import pluss from "../../ASSETS/IMAGES/path-38511@2x.png";
 import Fair_info from "../../ASSETS/IMAGES/path-44933@2x.png";
 import Rupee from "../../ASSETS/IMAGES/path-44930@2x.png";
 
+class BankDetails {
+  constructor() {
+    this.config = {
+      bankNames: ["Indian Bank", "Central Bank", "SBI" , "HDFC"],
+      accountHolderLabel: "Account Holder's Name",
+      accountNumberLabel: "Account Number",
+      confirmAccountNumberLabel: "Confirm Account Number",
+      profilePictureLabel: "Profile Picture",
+      uploadedBankPictureUrl: "",
+    };
+  }
+
+  render() {
+    return `
+    <div class="container-1">
+        <div class="bank-details-section">
+            <div class="section-title">
+                <h2>Primary Bank Details</h2>
+            </div>
+            <form>
+                <div class="bank-form-row">
+                    ${this.renderInputField(
+                      "accountHolderName",
+                      this.config.accountHolderLabel,
+                      "Enter Account Holders Name"
+                    )}
+                    ${this.renderInputField(
+                      "accountNumber",
+                      this.config.accountNumberLabel,
+                      "Enter Account No"
+                    )}
+                    ${this.renderInputField(
+                      "confirmAccountNumber",
+                      this.config.confirmAccountNumberLabel,
+                      "Enter Account No"
+                    )}
+                    ${this.renderBankDropdown(
+                      "bankName",
+                      "Select Bank",
+                      this.config.bankNames
+                    )}
+                </div>
+
+                <div class="Profile">
+                    ${this.renderProfilePictureSection(
+                      "PassBookPicture",
+                      this.config.profilePictureLabel
+                    )}
+                </div>
+
+                <div class="Add">
+                    <img src=${pluss} alt="">
+                    <a href="#" class="add-secondary-bank">Add Secondary Bank Details</a>
+                </div>
+            </form>
+        </div>
+        ${this.renderButtons()}
+    </div>
+    `;
+  }
+
+  renderInputField(id, label, placeholder) {
+    return `
+      <div class="bank-form-group">
+        <label for="${id}">${label}</label>
+        <input type="text" id="${id}" placeholder="${placeholder}">
+      </div>
+    `;
+  }
+
+  renderBankDropdown(id, label, bankNames) {
+    const options = bankNames
+      .map((bank) => `<option value="${bank}">${bank}</option>`)
+      .join("");
+    return `
+      <div class="bank-form-group">
+        <label for="${id}">${label}</label>
+        <select id="${id}">
+          <option value="" disabled selected>Select Bank</option>
+          ${options}
+        </select>
+      </div>
+    `;
+  }
+
+  renderProfilePictureSection(id, label) {
+    return `
+      <div class="profile-row">
+        <img id="PassBookPicturePreview" class="profile-pic" src=${Bank_Profile} alt="bankpass" style="height: 95px;">
+        <div class="pic">
+          <label for="${id}">${label}</label>
+          <p style="color: #969292;">Maximum size : 2 MB | Minimum Resolution : 1000px, Format : JPG, PNG</p>
+          <input type="file" id="${id}" accept="image/jpeg, image/png">
+        </div>
+      </div>
+    `;
+  }
+
+  renderButtons() {
+    return `
+      <div class="form-buttons">
+        <button type="button" class="cancel-btn">Cancel</button>
+        <button type="button" class="back-btn">Back</button>
+        <button type="button" id="next-btn-b" class="next-btn">Next</button>
+      </div>
+    `;
+  }
+
+  addEventListeners(nextPageCallback) {
+    const BookPictureInput = document.getElementById("PassBookPicture");
+    const BookPicturePreview = document.getElementById(
+      "PassBookPicturePreview"
+    );
+
+    BookPictureInput.addEventListener("change", (e) => {
+      const file = e.target.files[0];
+      if (file) {
+        if (file.size > 2 * 1024 * 1024) {
+          alert("File size exceeds 2MB.");
+          BookPictureInput.value = "";
+          BookPicturePreview.src = "";
+          return;
+        }
+
+        const reader = new FileReader();
+        reader.onload = (event) => {
+          BookPicturePreview.src = event.target.result;
+        };
+        reader.readAsDataURL(file);
+
+        this.uploadedBankPicture = file;
+      }
+    });
+
+    const nextBtn = document.getElementById("next-btn-b");
+    nextBtn.addEventListener("click", async (event) => {
+      event.preventDefault();
+      try {
+        const formData = this.collectBankFormData();
+        const result = await addBankDetails(formData);
+        if (result.success) {
+          nextPageCallback();
+        } else {
+          console.error("Error response from server:", result.error);
+        }
+      } catch (error) {
+        console.error("Error during form submission:", error);
+      }
+    });
+  }
+
+  collectBankFormData() {
+    const formData = new FormData();
+    formData.append(
+      "accountHolderName",
+      document.getElementById("accountHolderName").value
+    );
+    formData.append(
+      "accountNumber",
+      document.getElementById("accountNumber").value
+    );
+    formData.append(
+      "confirmAccountNumber",
+      document.getElementById("confirmAccountNumber").value
+    );
+    formData.append("bankName", document.getElementById("bankName").value);
+
+    const PassBookPicture = document.getElementById("PassBookPicture").files[0];
+    if (PassBookPicture) {
+      formData.append("PassBookPicture", PassBookPicture);
+    }
+
+    return formData;
+  }
+}
+
+
 // PersonalDetails.js
 class PersonalDetail {
   constructor() {
@@ -685,181 +862,6 @@ class ClientDetails {
   }
 }
 
-class BankDetails {
-  constructor() {
-    this.config = {
-      bankNames: ["Indian Bank", "Central Bank", "SBI"],
-      accountHolderLabel: "Account Holder's Name",
-      accountNumberLabel: "Account Number",
-      confirmAccountNumberLabel: "Confirm Account Number",
-      profilePictureLabel: "Profile Picture",
-      uploadedBankPictureUrl: "",
-    };
-  }
-
-  render() {
-    return `
-    <div class="container-1">
-        <div class="bank-details-section">
-            <div class="section-title">
-                <h2>Primary Bank Details</h2>
-            </div>
-            <form>
-                <div class="bank-form-row">
-                    ${this.renderInputField(
-                      "accountHolderName",
-                      this.config.accountHolderLabel,
-                      "Enter Account Holders Name"
-                    )}
-                    ${this.renderInputField(
-                      "accountNumber",
-                      this.config.accountNumberLabel,
-                      "Enter Account No"
-                    )}
-                    ${this.renderInputField(
-                      "confirmAccountNumber",
-                      this.config.confirmAccountNumberLabel,
-                      "Enter Account No"
-                    )}
-                    ${this.renderBankDropdown(
-                      "bankName",
-                      "Select Bank",
-                      this.config.bankNames
-                    )}
-                </div>
-
-                <div class="Profile">
-                    ${this.renderProfilePictureSection(
-                      "PassBookPicture",
-                      this.config.profilePictureLabel
-                    )}
-                </div>
-
-                <div class="Add">
-                    <img src=${pluss} alt="">
-                    <a href="#" class="add-secondary-bank">Add Secondary Bank Details</a>
-                </div>
-            </form>
-        </div>
-        ${this.renderButtons()}
-    </div>
-    `;
-  }
-
-  renderInputField(id, label, placeholder) {
-    return `
-      <div class="bank-form-group">
-        <label for="${id}">${label}</label>
-        <input type="text" id="${id}" placeholder="${placeholder}">
-      </div>
-    `;
-  }
-
-  renderBankDropdown(id, label, bankNames) {
-    const options = bankNames
-      .map((bank) => `<option value="${bank}">${bank}</option>`)
-      .join("");
-    return `
-      <div class="bank-form-group">
-        <label for="${id}">${label}</label>
-        <select id="${id}">
-          <option value="" disabled selected>Select Bank</option>
-          ${options}
-        </select>
-      </div>
-    `;
-  }
-
-  renderProfilePictureSection(id, label) {
-    return `
-      <div class="profile-row">
-        <img id="PassBookPicturePreview" class="profile-pic" src=${Bank_Profile} alt="bankpass" style="height: 95px;">
-        <div class="pic">
-          <label for="${id}">${label}</label>
-          <p style="color: #969292;">Maximum size : 2 MB | Minimum Resolution : 1000px, Format : JPG, PNG</p>
-          <input type="file" id="${id}" accept="image/jpeg, image/png">
-        </div>
-      </div>
-    `;
-  }
-
-  renderButtons() {
-    return `
-      <div class="form-buttons">
-        <button type="button" class="cancel-btn">Cancel</button>
-        <button type="button" class="back-btn">Back</button>
-        <button type="button" id="next-btn-b" class="next-btn">Next</button>
-      </div>
-    `;
-  }
-
-  addEventListeners(nextPageCallback) {
-    const BookPictureInput = document.getElementById("PassBookPicture");
-    const BookPicturePreview = document.getElementById(
-      "PassBookPicturePreview"
-    );
-
-    BookPictureInput.addEventListener("change", (e) => {
-      const file = e.target.files[0];
-      if (file) {
-        if (file.size > 2 * 1024 * 1024) {
-          alert("File size exceeds 2MB.");
-          BookPictureInput.value = "";
-          BookPicturePreview.src = "";
-          return;
-        }
-
-        const reader = new FileReader();
-        reader.onload = (event) => {
-          BookPicturePreview.src = event.target.result;
-        };
-        reader.readAsDataURL(file);
-
-        this.uploadedBankPicture = file;
-      }
-    });
-
-    const nextBtn = document.getElementById("next-btn-b");
-    nextBtn.addEventListener("click", async (event) => {
-      event.preventDefault();
-      try {
-        const formData = this.collectBankFormData();
-        const result = await addBankDetails(formData);
-        if (result.success) {
-          nextPageCallback();
-        } else {
-          console.error("Error response from server:", result.error);
-        }
-      } catch (error) {
-        console.error("Error during form submission:", error);
-      }
-    });
-  }
-
-  collectBankFormData() {
-    const formData = new FormData();
-    formData.append(
-      "accountHolderName",
-      document.getElementById("accountHolderName").value
-    );
-    formData.append(
-      "accountNumber",
-      document.getElementById("accountNumber").value
-    );
-    formData.append(
-      "confirmAccountNumber",
-      document.getElementById("confirmAccountNumber").value
-    );
-    formData.append("bankName", document.getElementById("bankName").value);
-
-    const PassBookPicture = document.getElementById("PassBookPicture").files[0];
-    if (PassBookPicture) {
-      formData.append("PassBookPicture", PassBookPicture);
-    }
-
-    return formData;
-  }
-}
 // Document.js
 class Document {
   render() {
@@ -1141,44 +1143,134 @@ class Document {
 
   collectDocFormData() {
     const formData = new FormData();
-    
+
     // Driver document fields
-    formData.append("aadharNumber", document.getElementById("aadhar-number").value);
-    formData.append("aadharDocument", document.getElementById("aadhar-file").files[0]);
+    formData.append(
+      "aadharNumber",
+      document.getElementById("aadhar-number").value
+    );
+    formData.append(
+      "aadharDocument",
+      document.getElementById("aadhar-file").files[0]
+    );
     formData.append("panNumber", document.getElementById("pan-number").value);
-    formData.append("panDocument", document.getElementById("pan-file").files[0]);
+    formData.append(
+      "panDocument",
+      document.getElementById("pan-file").files[0]
+    );
     formData.append("badgeIDNumber", document.getElementById("badge-id").value);
-    formData.append("badgeStartDate", document.getElementById("start-date-badge").value);
-    formData.append("badgeExpiryDate", document.getElementById("expiry-date-badge").value);
-    formData.append("badgeIDDocument", document.getElementById("badge-file").files[0]);
-    formData.append("licenseNumber", document.getElementById("license-number").value);
-    formData.append("licenseStartDate", document.getElementById("start-date-license").value);
-    formData.append("licenseExpiryDate", document.getElementById("expiry-date-license").value);
-    formData.append("licenseDocument", document.getElementById("license-file").files[0]);
+    formData.append(
+      "badgeStartDate",
+      document.getElementById("start-date-badge").value
+    );
+    formData.append(
+      "badgeExpiryDate",
+      document.getElementById("expiry-date-badge").value
+    );
+    formData.append(
+      "badgeIDDocument",
+      document.getElementById("badge-file").files[0]
+    );
+    formData.append(
+      "licenseNumber",
+      document.getElementById("license-number").value
+    );
+    formData.append(
+      "licenseStartDate",
+      document.getElementById("start-date-license").value
+    );
+    formData.append(
+      "licenseExpiryDate",
+      document.getElementById("expiry-date-license").value
+    );
+    formData.append(
+      "licenseDocument",
+      document.getElementById("license-file").files[0]
+    );
     formData.append("pvcNumber", document.getElementById("pvc-number").value);
-    formData.append("pvcStartDate", document.getElementById("start-date-pvc").value);
-    formData.append("pvcExpiryDate", document.getElementById("expiry-date-pvc").value);
-    formData.append("pvcDocument", document.getElementById("pvc-file").files[0]);
-    
+    formData.append(
+      "pvcStartDate",
+      document.getElementById("start-date-pvc").value
+    );
+    formData.append(
+      "pvcExpiryDate",
+      document.getElementById("expiry-date-pvc").value
+    );
+    formData.append(
+      "pvcDocument",
+      document.getElementById("pvc-file").files[0]
+    );
+
     // Vehicle document fields
-    formData.append("insurance_name_id", document.getElementById("insurance-id").value);
-    formData.append("insurance_start_date", document.getElementById("start-date-insurance").value);
-    formData.append("insurance_expiry_date", document.getElementById("expiry-date-insurance").value);
-    formData.append("insurance_document", document.getElementById("insurance-file").files[0]);
+    formData.append(
+      "insurance_name_id",
+      document.getElementById("insurance-id").value
+    );
+    formData.append(
+      "insurance_start_date",
+      document.getElementById("start-date-insurance").value
+    );
+    formData.append(
+      "insurance_expiry_date",
+      document.getElementById("expiry-date-insurance").value
+    );
+    formData.append(
+      "insurance_document",
+      document.getElementById("insurance-file").files[0]
+    );
     formData.append("rc_book_no", document.getElementById("rc-book").value);
-    formData.append("rc_book_start_date", document.getElementById("start-date-rc").value);
-    formData.append("rc_book_expiry_date", document.getElementById("expiry-date-rc").value);
-    formData.append("rc_book_document", document.getElementById("rc-book-file").files[0]);
-    formData.append("fitness_certificate", document.getElementById("fitness-certificate").value);
-    formData.append("fitness_certificate_start_date", document.getElementById("start-date-fitness").value);
-    formData.append("fitness_certificate_expiry_date", document.getElementById("expiry-date-fitness").value);
-    formData.append("fitness_certificate_document", document.getElementById("fitness-file").files[0]);
-    formData.append("vehicle_registration_number", document.getElementById("registration-no").value);
-    formData.append("vehicle_registration_document", document.getElementById("registration-file").files[0]);
-    formData.append("engine_number", document.getElementById("engine-number").value);
-    formData.append("engine_number_document", document.getElementById("engine-file").files[0]);
-    formData.append("chasis_number", document.getElementById("chassis-number").value);
-    formData.append("chasis_number_document", document.getElementById("chassis-file").files[0]);
+    formData.append(
+      "rc_book_start_date",
+      document.getElementById("start-date-rc").value
+    );
+    formData.append(
+      "rc_book_expiry_date",
+      document.getElementById("expiry-date-rc").value
+    );
+    formData.append(
+      "rc_book_document",
+      document.getElementById("rc-book-file").files[0]
+    );
+    formData.append(
+      "fitness_certificate",
+      document.getElementById("fitness-certificate").value
+    );
+    formData.append(
+      "fitness_certificate_start_date",
+      document.getElementById("start-date-fitness").value
+    );
+    formData.append(
+      "fitness_certificate_expiry_date",
+      document.getElementById("expiry-date-fitness").value
+    );
+    formData.append(
+      "fitness_certificate_document",
+      document.getElementById("fitness-file").files[0]
+    );
+    formData.append(
+      "vehicle_registration_number",
+      document.getElementById("registration-no").value
+    );
+    formData.append(
+      "vehicle_registration_document",
+      document.getElementById("registration-file").files[0]
+    );
+    formData.append(
+      "engine_number",
+      document.getElementById("engine-number").value
+    );
+    formData.append(
+      "engine_number_document",
+      document.getElementById("engine-file").files[0]
+    );
+    formData.append(
+      "chasis_number",
+      document.getElementById("chassis-number").value
+    );
+    formData.append(
+      "chasis_number_document",
+      document.getElementById("chassis-file").files[0]
+    );
 
     return formData;
   }

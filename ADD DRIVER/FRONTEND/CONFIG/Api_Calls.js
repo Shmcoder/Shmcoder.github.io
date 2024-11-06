@@ -2,10 +2,10 @@ import URLs from "./Proxy_Urls.js";
 
 const sendFormData = async (url, formData) => {
   try {
-    // console.log("Received form data:", formData);
-    // for (let pair of formData.entries()) {
-    //   console.log(pair[0] + ", " + pair[1]);
-    // }
+    console.log("Received form data:", formData);
+    for (let pair of formData.entries()) {
+      console.log(pair[0] + ", " + pair[1]);
+    }
 
     const response = await fetch(url, {
       method: "POST",

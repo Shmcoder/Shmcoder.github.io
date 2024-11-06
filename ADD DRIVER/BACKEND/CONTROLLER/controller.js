@@ -1,7 +1,6 @@
 // Controller.js
 const multer = require("multer");
 const path = require("path");
-// const { addPersonalDetailsQuery, addVehicleDetails, addBankDetails, addClientDetails, addDocumentDetails } = require("../QUERY/Query");
 const {
   addPersonalDetailsSchema,
   addVehicleDetailsSchema,
@@ -38,7 +37,6 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage });
 
-// Helper to run validation and handle errors
 const runValidation = async (data, schema, res) => {
   const { error, value } = schema.validate(data);
   if (error) {
